@@ -1,0 +1,23 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Generated experimental material
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+artifacts/calibration/*
+!artifacts/calibration/.gitkeep
+results/*
+!results/.gitkeep
+reports/figures/*
+!reports/figures/.gitkeep
+reports/tables/*
+!reports/tables/.gitkeep
+
+# Local model caches and secrets
+.cache/
+.env

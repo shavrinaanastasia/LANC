@@ -1,0 +1,9 @@
+extends: base.yaml
+phase: calibration
+frames: [neutral]
+interventions: [identity]
+generation:
+  seeds: [1103, 2207]
+calibration:
+  max_vectors_per_dialogue_per_agent: 128
+  sampling_seed: 99173

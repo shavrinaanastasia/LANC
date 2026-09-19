@@ -1,0 +1,4 @@
+extends: base.yaml
+bootstrap_iterations: 10000
+permutation_iterations: 10000
+alpha: 0.05

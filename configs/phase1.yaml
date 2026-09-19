@@ -1,0 +1,4 @@
+extends: base.yaml
+phase: phase1
+frames: [competition, cooperation, neutral]
+interventions: [identity]

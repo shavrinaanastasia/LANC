@@ -1,0 +1,5 @@
+extends: base.yaml
+phase: phase2
+frames: [neutral]
+interventions: [identity, pca_128, pca_32, pca_8, pca_2, pca_1]
+pca_artifact: artifacts/calibration/REPLACE_WITH_ARTIFACT/pca_basis.npz

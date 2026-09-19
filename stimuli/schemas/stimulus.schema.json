@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["stimulus_id", "stratum", "topic", "roles", "public_facts", "competition", "cooperation"],
+  "properties": {
+    "stimulus_id": {"type": "string"}, "stratum": {"type": "string"}, "topic": {"type": "string"},
+    "roles": {"type": "object", "required": ["A", "B"]}, "public_facts": {"type": "array", "minItems": 2},
+    "competition": {"type": "object", "required": ["A", "B"]},
+    "cooperation": {"type": "object", "required": ["goal", "A", "B"]}
+  }
+}
