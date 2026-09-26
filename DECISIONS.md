@@ -27,3 +27,7 @@ The requested long-dialogue study is a separate exploratory extension, not a rep
 ## 2026-09-26: Long-dialogue resumability
 
 Unlike the original MVP commands, the exploratory long-dialogue command writes one immutable, content-hashed record after each completed dialogue. Resume requires the same explicit `run_id`, matching configuration hash, matching scope (frames, stimuli, and seeds), and valid hashes for every existing record. It never overwrites a run manifest, dialogue record, or final JSONL file. This exception is required because the GPU run is expected to outlast an individual Colab session.
+
+## 2026-09-26: Colab Python 3.13 environment
+
+Current Colab runtimes use Python 3.13, while the repository's locked local dependency set targets Python 3.10-3.12 and includes numerical wheels unavailable for Python 3.13. The exploratory GPU notebook therefore preserves Colab's CUDA PyTorch and preinstalled numerical stack, installs a current compatible Transformers version in the 4.x line, and installs the local package with `--no-deps --ignore-requires-python`. The run manifest records the actual package versions. This is an environment deviation for the exploratory long-dialogue extension only; it does not alter the original pinned MVP results.
