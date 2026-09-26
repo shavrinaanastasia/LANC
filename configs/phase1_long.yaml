@@ -1,0 +1,8 @@
+extends: base.yaml
+phase: phase1_long
+frames: [competition, cooperation, neutral]
+interventions: [identity]
+long_dialogue:
+  target_generated_words: 10000
+  rolling_context_tokens: 6000
+  max_turns: 800

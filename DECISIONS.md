@@ -11,3 +11,19 @@ The prompt permits resume only with record hash checking. This MVP refuses exist
 ## 2026-09-19: Per-turn RNG implementation
 
 `transformers==4.43.3` rejects `generator=` for this SmolLM2 generation implementation. The code uses `torch.random.fork_rng` and seeds the fork from the preregistered `(generation_seed, stimulus_id, turn_index, speaker)` mapping instead. The random streams remain isolated from global experiment state and condition-free; the API-level replacement does not change the experimental seed mapping or the estimand.
+
+## 2026-09-20: Calibration vector-cap implementation error
+
+The first full Colab calibration run `20260919T124847Z-7aaef464f6` sampled up to 128 layer-15 vectors per generated utterance rather than no more than 128 vectors per `dialogue x agent` block. Its 20,934-vector PCA artifact therefore violates the preregistered memory cap. Phase 2 run `20260919T150055Z-0b8a8b09a6`, which used that artifact, is retained as exploratory and must not be described as confirmatory MVP evidence. The implementation now concatenates all five generated utterance segments for one agent in a dialogue and then deterministically samples at most 128 vectors once. A fresh calibration and Phase 2 run are required.
+
+## 2026-09-26: Gromov Appendix-A synthetic validation
+
+The Gromov, Borodin, and Yerbolova paper does not disclose the sample-size ladder used for its synthetic controls. The separate `schweinhart-controls` command therefore uses an explicitly supplied, immutable ladder rather than claiming an exact paper replication. It implements the published alpha sweep and MST-growth relation on sphere, Swiss roll, Sierpinski carpet, and Menger sponge controls. These known-shape controls validate numerical behaviour only; they do not alter the preregistered dialogue-PHD estimand.
+
+## 2026-09-26: Exploratory long Phase 1 dialogue generation
+
+The requested long-dialogue study is a separate exploratory extension, not a replacement for preregistered Phase 1. It preserves the 24 evaluation stimuli, three interaction frames, three generation seeds, model revision, sampling settings, and prompt texts. Each of the resulting 216 dialogues stops at no fewer than 10,000 generated English-style words. Because SmolLM2 has an 8,192-token context window, the generator retains only the most recent complete chat messages whose rendered prompt occupies at most 6,000 tokens. It records dropped-message counts, largest prompt length, generated words, turns, and completion status per dialogue. This rolling-context procedure changes the long-run conversational process and results must not be described as the original ten-turn MVP.
+
+## 2026-09-26: Long-dialogue resumability
+
+Unlike the original MVP commands, the exploratory long-dialogue command writes one immutable, content-hashed record after each completed dialogue. Resume requires the same explicit `run_id`, matching configuration hash, matching scope (frames, stimuli, and seeds), and valid hashes for every existing record. It never overwrites a run manifest, dialogue record, or final JSONL file. This exception is required because the GPU run is expected to outlast an individual Colab session.

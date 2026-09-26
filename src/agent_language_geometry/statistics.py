@@ -41,9 +41,10 @@ def _bootstrap_ci(
 
 def _sign_flip_pvalue(differences: np.ndarray, iterations: int, rng: np.random.Generator) -> float:
     observed = abs(differences.mean())
-    null = np.abs(
+    signed_means = (
         (rng.integers(0, 2, size=(iterations, len(differences))) * 2 - 1) * differences
     ).mean(axis=1)
+    null = np.abs(signed_means)
     return float((1 + np.count_nonzero(null >= observed)) / (iterations + 1))
 
 

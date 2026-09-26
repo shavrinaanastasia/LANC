@@ -17,6 +17,7 @@ reports/figures/*
 !reports/figures/.gitkeep
 reports/tables/*
 !reports/tables/.gitkeep
+reports/*.pdf
 
 # Local model caches and secrets
 .cache/

@@ -60,3 +60,11 @@ def validate_config(config: dict[str, Any]) -> None:
             raise ValueError(f"Locked MVP generation setting {key} must be {expected_value}")
     if config["analysis"].get("n_min") != 40 or config["analysis"].get("primary_min_tokens") != 50:
         raise ValueError("Primary PHD protocol requires n_min=40 and eligibility N>=50")
+    if config.get("phase") == "phase1_long":
+        long_dialogue = config.get("long_dialogue", {})
+        if long_dialogue.get("target_generated_words") != 10_000:
+            raise ValueError("Long Phase 1 requires exactly 10,000 generated words per dialogue")
+        if long_dialogue.get("rolling_context_tokens") != 6_000:
+            raise ValueError("Long Phase 1 requires a 6,000-token rolling context")
+        if int(long_dialogue.get("max_turns", 0)) < 500:
+            raise ValueError("Long Phase 1 max_turns must allow the 10,000-word target")

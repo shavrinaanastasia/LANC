@@ -10,3 +10,8 @@ def test_paired_summary_and_holm() -> None:
     assert result["paired_mean_difference"] == 2.0
     adjusted = holm_adjust({"a": 0.01, "b": 0.04, "c": 0.2})
     assert adjusted["a"] <= adjusted["b"] <= adjusted["c"]
+
+
+def test_sign_flip_detects_consistent_nonzero_differences() -> None:
+    result = paired_summary(np.ones(16), bootstrap_iterations=100, permutation_iterations=10000)
+    assert result["sign_flip_p"] < 0.01

@@ -45,6 +45,14 @@ def deterministic_vector_sample(
     return vectors[indices]
 
 
+def sample_dialogue_agent_vectors(
+    chunks: list[np.ndarray], maximum: int, seed: int, key: str
+) -> tuple[np.ndarray, np.ndarray]:
+    """Pool an agent's five turn segments before applying the preregistered cap once."""
+    available = np.concatenate(chunks) if chunks else np.empty((0, 576), dtype=np.float32)
+    return available, deterministic_vector_sample(available, maximum, seed, key)
+
+
 def fit_pca(vectors: list[np.ndarray], artifact_path: Path) -> dict[str, Any]:
     cloud = np.concatenate(vectors).astype(np.float32, copy=False)
     if cloud.shape[1] != 576:

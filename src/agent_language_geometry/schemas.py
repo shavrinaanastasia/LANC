@@ -36,6 +36,7 @@ class DialogueRecord:
     status: str
     error: str | None = None
     shared_weights: bool = True
+    protocol_metadata: dict[str, Any] = field(default_factory=dict)
     schema_version: str = SCHEMA_VERSION
 
     def as_dict(self) -> dict[str, Any]:
