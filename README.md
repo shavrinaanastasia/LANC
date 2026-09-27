@@ -51,13 +51,19 @@ For a long GPU job, set a stable non-null `run_id` before the first command. A s
 python -m agent_language_geometry.cli run-phase1-long --config configs/phase1_long_colab.yaml --resume
 ```
 
+To create an explicitly separate remainder run, for example units 26-216 after an inaccessible prior run, use a different `run_id` and preserve the original first-run records for later audit and merge:
+
+```powershell
+python -m agent_language_geometry.cli run-phase1-long --config configs/phase1_long_colab.yaml --start-unit-index 26
+```
+
 For a throughput benchmark only, never as a substitute for the complete design:
 
 ```powershell
 python -m agent_language_geometry.cli run-phase1-long --config configs/phase1_long.yaml --limit-cards 1 --limit-seeds 1
 ```
 
-Run directories are immutable. Do not reuse `run_id`; resume is intentionally not implemented until record-level hash checking is added.
+Run directories are immutable. The original MVP commands do not resume. The exploratory long-dialogue command alone supports hash-verified resume.
 
 ## GitHub Desktop
 

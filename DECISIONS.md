@@ -31,3 +31,7 @@ Unlike the original MVP commands, the exploratory long-dialogue command writes o
 ## 2026-09-26: Colab Python 3.13 environment
 
 Current Colab runtimes use Python 3.13, while the repository's locked local dependency set targets Python 3.10-3.12 and includes numerical wheels unavailable for Python 3.13. The exploratory GPU notebook therefore preserves Colab's CUDA PyTorch and preinstalled numerical stack, installs a current compatible Transformers version in the 4.x line, and installs the local package with `--no-deps --ignore-requires-python`. The run manifest records the actual package versions. This is an environment deviation for the exploratory long-dialogue extension only; it does not alter the original pinned MVP results.
+
+## 2026-09-26: Separate remainder run from unit 26
+
+The initial long-dialogue run saved 25 immutable records before GPU access became unavailable. One record, global unit 13 (`competition`, `E05`, seed `1103`), has status `incomplete` after reaching the 800-turn safety limit and is retained without deletion. A new account may generate global units 26-216 under a distinct `run_id` with `--start-unit-index 26`. This is a separate remainder run with 191 records, not a hash-verified resume of the original 216-unit run. Any later combined dataset must retain source-run provenance, preserve the incomplete unit 13, and be reported as a split-run exploratory extension.

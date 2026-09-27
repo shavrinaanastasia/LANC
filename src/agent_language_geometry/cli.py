@@ -296,12 +296,26 @@ def _long_run_directory(config: dict[str, Any], resume: bool) -> Path:
     return run_dir
 
 
+def _long_units(
+    frames: list[str], cards: list[dict[str, Any]], seeds: list[int], start_unit_index: int
+) -> list[tuple[int, str, dict[str, Any], int]]:
+    all_units = [(frame, card, seed) for frame in frames for card in cards for seed in seeds]
+    if not 1 <= start_unit_index <= len(all_units):
+        raise ValueError(f"start_unit_index must be between 1 and {len(all_units)}")
+    return [
+        (index, frame, card, seed)
+        for index, (frame, card, seed) in enumerate(all_units, start=1)
+        if index >= start_unit_index
+    ]
+
+
 def run_long_phase1(
     config: dict[str, Any],
     *,
     limit_cards: int | None = None,
     limit_seeds: int | None = None,
     resume: bool = False,
+    start_unit_index: int = 1,
 ) -> Path:
     """Exploratory long-dialogue generation; deliberately separate from preregistered Phase 1."""
     cards = _cards(_root() / config["paths"]["evaluation_stimuli"])
@@ -312,13 +326,24 @@ def run_long_phase1(
         if limit_seeds
         else config["generation"]["seeds"]
     )
+    units = _long_units(config["frames"], cards, seeds, start_unit_index)
     run_dir = _long_run_directory(config, resume)
     records_dir = run_dir / "dialogue_records"
-    scope = {
-        "frames": config["frames"],
-        "stimulus_ids": [card["stimulus_id"] for card in cards],
-        "seeds": seeds,
-    }
+    scope = (
+        {
+            "frames": config["frames"],
+            "stimulus_ids": [card["stimulus_id"] for card in cards],
+            "seeds": seeds,
+        }
+        if start_unit_index == 1
+        else {
+            "start_unit_index": start_unit_index,
+            "units": [
+                {"index": index, "frame": frame, "stimulus_id": card["stimulus_id"], "seed": seed}
+                for index, frame, card, seed in units
+            ],
+        }
+    )
     scope_path = run_dir / "long_dialogue_scope.json"
     if resume:
         if not scope_path.exists() or json.loads(scope_path.read_text(encoding="utf-8")) != scope:
@@ -338,9 +363,7 @@ def run_long_phase1(
     }
     expected_paths = [
         _long_record_path(records_dir, frame, card["stimulus_id"], seed)
-        for frame in config["frames"]
-        for card in cards
-        for seed in seeds
+        for _, frame, card, seed in units
     ]
     expected_record_names = {path.name for path in expected_paths}
     if not set(existing_records).issubset(expected_record_names):
@@ -352,63 +375,62 @@ def run_long_phase1(
         return run_dir
 
     model, tokenizer = load_runtime(config["model"])
-    for frame in config["frames"]:
-        for card in cards:
-            for seed in seeds:
-                record_path = _long_record_path(records_dir, frame, card["stimulus_id"], seed)
-                if record_path.name in existing_records:
-                    continue
-                started = datetime.now(timezone.utc).isoformat()
-                try:
-                    utterances, protocol_metadata = generate_long_dialogue(
-                        model,
-                        tokenizer,
-                        card,
-                        frame,
-                        seed,
-                        config["generation"],
-                        config["long_dialogue"],
-                    )
-                    target_reached = bool(protocol_metadata["target_reached"])
-                    status = "complete" if target_reached else "incomplete"
-                    error = None if target_reached else "TARGET_WORD_COUNT_NOT_REACHED"
-                except Exception as exc:
-                    raise RuntimeError(
-                        f"Long dialogue failed before immutable record creation: {frame} "
-                        f"{card['stimulus_id']} seed {seed}"
-                    ) from exc
-                record = DialogueRecord(
-                    run_dir.name,
-                    "phase1_long",
-                    card["stimulus_id"],
-                    sha256(canonical_json(card)),
-                    frame,
-                    "identity",
-                    None,
-                    seed,
-                    utterances,
-                    config["model"]["revision"],
-                    generation_hash,
-                    git_state(_root()),
-                    software_manifest(),
-                    started,
-                    datetime.now(timezone.utc).isoformat(),
-                    status,
-                    error,
-                    protocol_metadata={
-                        **protocol_metadata,
-                        "long_config_hash": config["_config_hash"],
-                    },
-                ).as_dict()
-                record_with_hash = {**record, "record_hash": sha256(canonical_json(record))}
-                with record_path.open("x", encoding="utf-8") as target:
-                    target.write(canonical_json(record_with_hash) + "\n")
-                existing_records[record_path.name] = record
-                print(
-                    f"saved {len(existing_records)}/{len(expected_paths)}: "
-                    f"{frame} {card['stimulus_id']} seed {seed} ({status})",
-                    flush=True,
-                )
+    for global_index, frame, card, seed in units:
+        record_path = _long_record_path(records_dir, frame, card["stimulus_id"], seed)
+        if record_path.name in existing_records:
+            continue
+        started = datetime.now(timezone.utc).isoformat()
+        try:
+            utterances, protocol_metadata = generate_long_dialogue(
+                model,
+                tokenizer,
+                card,
+                frame,
+                seed,
+                config["generation"],
+                config["long_dialogue"],
+            )
+            target_reached = bool(protocol_metadata["target_reached"])
+            status = "complete" if target_reached else "incomplete"
+            error = None if target_reached else "TARGET_WORD_COUNT_NOT_REACHED"
+        except Exception as exc:
+            raise RuntimeError(
+                f"Long dialogue failed before immutable record creation: {frame} "
+                f"{card['stimulus_id']} seed {seed}"
+            ) from exc
+        record = DialogueRecord(
+            run_dir.name,
+            "phase1_long",
+            card["stimulus_id"],
+            sha256(canonical_json(card)),
+            frame,
+            "identity",
+            None,
+            seed,
+            utterances,
+            config["model"]["revision"],
+            generation_hash,
+            git_state(_root()),
+            software_manifest(),
+            started,
+            datetime.now(timezone.utc).isoformat(),
+            status,
+            error,
+            protocol_metadata={
+                **protocol_metadata,
+                "long_config_hash": config["_config_hash"],
+                "global_unit_index": global_index,
+            },
+        ).as_dict()
+        record_with_hash = {**record, "record_hash": sha256(canonical_json(record))}
+        with record_path.open("x", encoding="utf-8") as target:
+            target.write(canonical_json(record_with_hash) + "\n")
+        existing_records[record_path.name] = record
+        print(
+            f"saved {len(existing_records)}/{len(expected_paths)}: "
+            f"unit {global_index} {frame} {card['stimulus_id']} seed {seed} ({status})",
+            flush=True,
+        )
     rows = [
         _read_long_record(path, run_dir.name, config["_config_hash"]) for path in expected_paths
     ]
@@ -545,6 +567,7 @@ def main() -> None:
             command.add_argument("--limit-cards", type=int)
             command.add_argument("--limit-seeds", type=int)
             command.add_argument("--resume", action="store_true")
+            command.add_argument("--start-unit-index", type=int, default=1)
     analyze_parser = commands.add_parser("analyze")
     analyze_parser.add_argument("--config", required=True)
     analyze_parser.add_argument("--run-dir", required=True)
@@ -577,6 +600,7 @@ def main() -> None:
                 limit_cards=args.limit_cards,
                 limit_seeds=args.limit_seeds,
                 resume=args.resume,
+                start_unit_index=args.start_unit_index,
             )
         )
     elif args.command == "analyze":
