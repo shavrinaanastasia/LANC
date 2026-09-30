@@ -1,0 +1,2 @@
+extends: phase1_long.yaml
+run_id: phase1-long-10000w-hse-v1
