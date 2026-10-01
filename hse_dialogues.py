@@ -28,6 +28,11 @@ sys.path.insert(0, str(ROOT / "src"))
 os.environ.setdefault("HF_HOME", str(ROOT / "hf_home"))
 os.environ.setdefault("HF_HUB_OFFLINE", "1")
 os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
+try:  # some cHARISMa nodes lack libsndfile; transformers then crashes importing audio utils we never use
+    import soundfile  # noqa: F401
+except (OSError, ImportError):
+    import types
+    sys.modules["soundfile"] = None  # find_spec() -> None: transformers treats soundfile as absent
 
 from agent_language_geometry.config import load_config  # noqa: E402
 from agent_language_geometry.reproducibility import (  # noqa: E402
