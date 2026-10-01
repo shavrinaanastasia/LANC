@@ -103,7 +103,32 @@ def prepare(config):
     print(f"prepared {rd} with {len(units_of(config, cards))} units", flush=True)
 
 
-def work(config, worker, workers, threads, device):
+STALE_SECONDS = {"cpu": 14 * 3600, "cuda": 3600}  # a claim older than this is considered abandoned
+
+
+def claim(locks_dir, name, dev):
+    """Atomically reserve a unit so CPU and GPU workers never generate the same dialogue twice."""
+    lock = locks_dir / (name + ".lock")
+    if lock.exists():
+        try:
+            info = json.loads(lock.read_text(encoding="utf-8"))
+            age = time.time() - float(info["time"])
+            limit = STALE_SECONDS.get(info.get("device", "cpu").split(":")[0], STALE_SECONDS["cpu"])
+        except Exception:
+            age, limit = 0.0, STALE_SECONDS["cpu"]
+        if age < limit:
+            return None
+        lock.unlink(missing_ok=True)  # stale claim (job died / was preempted)
+    try:
+        with lock.open("x", encoding="utf-8") as fh:
+            fh.write(json.dumps({"time": time.time(), "device": dev, "job": os.environ.get("SLURM_JOB_ID"),
+                                 "host": os.uname().nodename, "pid": os.getpid()}))
+    except FileExistsError:
+        return None
+    return lock
+
+
+def work(config, worker, workers, threads, device, order="asc", use_claims=False):
     import torch
     from agent_language_geometry.dialogue import generate_long_dialogue
     from agent_language_geometry.model_runtime import load_runtime
@@ -116,6 +141,10 @@ def work(config, worker, workers, threads, device):
     cards = cards_of(config)
     mine = [u for u in units_of(config, cards) if (u[0] - 1) % workers == worker]
     todo = [u for u in mine if not record_path(records_dir, u[1], u[2]["stimulus_id"], u[3]).exists()]
+    if order == "desc":
+        todo = todo[::-1]
+    locks_dir = rd / "locks"
+    locks_dir.mkdir(exist_ok=True)
     print(f"worker {worker}/{workers}: {len(mine)} units, {len(todo)} to do", flush=True)
     if not todo:
         return
@@ -123,9 +152,28 @@ def work(config, worker, workers, threads, device):
     dev = str(next(model.parameters()).device)
     gen_hash = sha256(canonical_json({"generation": config["generation"], "long_dialogue": config["long_dialogue"]}))
     job = {k: os.environ.get(k) for k in ("SLURM_JOB_ID", "SLURM_ARRAY_JOB_ID", "SLURM_ARRAY_TASK_ID", "SLURMD_NODENAME")}
-    for index, frame, card, seed in todo:
+    # pass 2 (GPU only): when nothing unclaimed is left, also take units still being ground by CPU workers;
+    # whoever finishes first writes the record (open "x"), the other result is discarded.
+    passes = [(u, 1) for u in todo] + ([(u, 2) for u in todo] if use_claims and dev.startswith("cuda") else [])
+    for (index, frame, card, seed), pass_no in passes:
         path = record_path(records_dir, frame, card["stimulus_id"], seed)
         if path.exists():
+            continue
+        lock = None
+        if use_claims and pass_no == 1:
+            lock = claim(locks_dir, path.stem, dev)
+            if lock is None:
+                continue
+        elif use_claims and pass_no == 2:
+            other = locks_dir / (path.stem + ".lock")
+            try:
+                if not json.loads(other.read_text(encoding="utf-8")).get("device", "").startswith("cpu"):
+                    continue  # another GPU process is on it
+            except Exception:
+                pass
+        if path.exists():  # finished by someone else while we were claiming
+            if lock is not None:
+                lock.unlink(missing_ok=True)
             continue
         started = datetime.now(timezone.utc).isoformat()
         t0 = time.time()
@@ -142,7 +190,7 @@ def work(config, worker, workers, threads, device):
                                "seconds": round(time.time() - t0, 1)},
         ).as_dict()
         full = {**record, "record_hash": sha256(canonical_json(record))}
-        tmp = path.with_suffix(".tmp")
+        tmp = path.with_name(f"{path.stem}.{os.getpid()}.tmp")
         tmp.write_text(canonical_json(full) + "\n", encoding="utf-8")
         try:
             with path.open("x", encoding="utf-8") as fh:  # never overwrite an existing record
@@ -150,6 +198,8 @@ def work(config, worker, workers, threads, device):
         except FileExistsError:
             pass
         tmp.unlink(missing_ok=True)
+        if lock is not None:
+            lock.unlink(missing_ok=True)
         print(f"saved unit {index} {frame} {card['stimulus_id']} seed {seed}: {meta['generated_words']} words, "
               f"{meta['turns_generated']} turns, {time.time() - t0:.0f}s on {dev}", flush=True)
 
@@ -191,12 +241,14 @@ def main():
     ap.add_argument("--workers", type=int, default=1)
     ap.add_argument("--threads", type=int, default=0)
     ap.add_argument("--device", default=None, help="cpu / cuda (default: cuda if available)")
+    ap.add_argument("--order", default="asc", choices=["asc", "desc"], help="desc: start from the last unit")
+    ap.add_argument("--claims", action="store_true", help="reserve units with lock files (CPU and GPU share the run)")
     a = ap.parse_args()
     config = load_config(ROOT / a.config)
     if a.mode == "prepare":
         prepare(config)
     elif a.mode == "work":
-        work(config, a.worker, a.workers, a.threads, a.device)
+        work(config, a.worker, a.workers, a.threads, a.device, a.order, a.claims)
     elif a.mode == "status":
         status(config)
     else:
