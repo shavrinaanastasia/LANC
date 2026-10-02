@@ -1,0 +1,67 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link [ref=e6] [cursor=pointer]:
+        - /url: /hub/
+        - img "JupyterHub" [ref=e7]
+      - generic [ref=e8]:
+        - list [ref=e9]:
+          - listitem [ref=e10]:
+            - link "Home" [ref=e11] [cursor=pointer]:
+              - /url: /hub/home
+          - listitem [ref=e12]:
+            - link "Token" [ref=e13] [cursor=pointer]:
+              - /url: /hub/token
+          - listitem [ref=e14]:
+            - link "HPC TaskMaster" [ref=e15] [cursor=pointer]:
+              - /url: https://lk.hpc.hse.ru
+          - listitem [ref=e16]:
+            - link "Отдел суперкомпьютерного моделирования НИУ ВШЭ" [ref=e17] [cursor=pointer]:
+              - /url: https://hpc.hse.ru
+        - list [ref=e18]:
+          - listitem [ref=e19]:
+            - generic [ref=e20]:
+              - paragraph [ref=e21]: aoshavrina
+              - button "Logout" [ref=e22] [cursor=pointer]:
+                - generic [aria-hidden] [ref=e23]: 
+                - text: Logout
+  - generic [ref=e24]:
+    - generic [ref=e25]:
+      - heading "JupyterHub для высокопроизводительных вычислений" [level=2] [ref=e26]
+      - list [ref=e27]:
+        - listitem [ref=e28]: "Назначение: только для запуска уже подготовленных расчетов на суперкомпьютере."
+        - listitem [ref=e29]:
+          - text: Для учебных целей рекомендуется использовать бесплатный web-сервис
+          - link "Google Colab" [ref=e30] [cursor=pointer]:
+            - /url: https://colab.research.google.com/
+          - text: .
+        - listitem [ref=e31]: После окончания расчёта, пожалуйста, еще раз откройте эту страницу и выключите ноутбук.
+        - listitem [ref=e32]:
+          - text: Для создания персональных Python окружений в Anaconda воспользуйтесь
+          - link "инструкцией" [ref=e33] [cursor=pointer]:
+            - /url: https://hpc.hse.ru/instructions/python/anaconda
+          - text: .
+        - listitem [ref=e34]:
+          - text: По вопросам использования JupyterHub обращайтесь в
+          - link "техподдержку" [ref=e35] [cursor=pointer]:
+            - /url: https://pmo.hse.ru/servicedesk/customer/portal/34
+          - text: в
+          - link "Отдел суперкомпьютерного моделирования" [ref=e36] [cursor=pointer]:
+            - /url: https://hpc.hse.ru/
+          - text: .
+    - button "Запустить ноутбук" [ref=e39] [cursor=pointer]
+    - generic [ref=e40]:
+      - heading "Дополнительные ноутбуки" [level=2] [ref=e41]
+      - paragraph [ref=e42]: В дополнение к вашему обычному ноутбуку, вы можете запустить несколько дополнительных ноутбуков. Например, можно использовать отдельные ноутбуки для запуска нескольких расчётов с различными входными данными. Для запуска дополнительного ноутбука обязательно необходимо указать его название.
+      - table [ref=e43]:
+        - rowgroup [ref=e44]:
+          - row [ref=e45]:
+            - columnheader "Название ноутбука" [ref=e46]
+            - columnheader "URL" [ref=e47]
+            - columnheader "Активность" [ref=e48]
+            - columnheader "Действия" [ref=e49]
+        - rowgroup [ref=e50]:
+          - row [ref=e51]:
+            - cell [ref=e52]:
+              - textbox "Укажите название ноутбука" [ref=e53]: NotebookName
+              - button "Запустить дополнительный ноутбук" [ref=e54] [cursor=pointer]

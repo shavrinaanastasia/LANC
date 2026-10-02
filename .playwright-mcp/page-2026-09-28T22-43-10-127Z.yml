@@ -1,0 +1,75 @@
+- generic [ref=f6e1]:
+  - banner [ref=f6e2]:
+    - link "Skip to left side bar" [ref=f6e4] [cursor=pointer]:
+      - /url: "#"
+    - img [ref=f6e6]: ">"
+    - navigation "main" [ref=f6e15]:
+      - menubar [ref=f6e17]:
+        - menuitem "File" [ref=f6e18]
+        - menuitem "Edit" [ref=f6e20]
+        - menuitem "View" [ref=f6e22]
+        - menuitem "Run" [ref=f6e24]
+        - menuitem "Kernel" [ref=f6e26]
+        - menuitem "Tabs" [ref=f6e28]
+        - menuitem "Settings" [ref=f6e30]
+        - menuitem "Help" [ref=f6e32]
+  - generic [ref=f6e34]:
+    - complementary "main sidebar" [ref=f6e35]:
+      - tablist "main sidebar" [ref=f6e36]:
+        - tab "File Browser (Ctrl+Shift+F)" [selected] [ref=f6e37]
+        - tab "Running Terminals and Kernels" [ref=f6e41]
+        - tab "Table of Contents" [ref=f6e46]
+        - tab "Softwares" [ref=f6e51]
+        - tab "Extension Manager" [ref=f6e53]
+    - generic [ref=f6e59]:
+      - region "File Browser Section" [ref=f6e61]:
+        - navigation "file browser" [ref=f6e62]:
+          - button "New Launcher (Ctrl+Shift+L)" [ref=f6e64] [cursor=pointer]
+          - button "New Folder" [ref=f6e71] [cursor=pointer]
+          - button "Upload Files" [ref=f6e78] [cursor=pointer]
+          - button "Refresh the file browser." [ref=f6e85] [cursor=pointer]
+        - textbox "Filter files by name" [ref=f6e93]
+        - generic [ref=f6e100]:
+          - generic "/home/aoshavrina" [ref=f6e101]:
+            - img [ref=f6e102] [cursor=pointer]
+          - text: /
+        - generic [ref=f6e104]:
+          - generic [ref=f6e105]:
+            - generic [ref=f6e106]: Name
+            - generic [ref=f6e110]: Last Modified
+          - list [ref=f6e111]:
+            - 'listitem "Name: jupyterhub_slurm Created: 2026-09-29 01:07:32 Modified: 2026-09-29 01:07:32 Writable: true" [ref=f6e112]':
+              - generic [ref=f6e116]: jupyterhub_slurm
+              - generic "Sep 29, 2026 1:07 AM" [ref=f6e117]: 36 minutes ago
+            - 'listitem "Name: jupyter_4359778.log Size: 52.3 KB Created: 2026-09-29 01:43:02 Modified: 2026-09-29 01:43:02 Writable: true" [ref=f6e982]':
+              - generic [ref=f6e122]: jupyter_4359778.log
+              - generic "Sep 29, 2026 1:43 AM" [ref=f6e983]: seconds ago
+            - 'listitem "Name: schweinhart_synthetic_controls.ipynb Size: 11.6 KB Created: 2026-09-29 01:41:54 Modified: 2026-09-29 01:41:54 Writable: true Kernel: Google Colab Analog 2025 (PyTorch 2.6.0 + TensorFlow 2.19) [python-google_colab_gpu_2025]" [ref=f6e798]':
+              - generic [ref=f6e348]: ●
+              - generic [ref=f6e353]: schweinhart_synthetic_controls.ipynb
+              - generic "Sep 29, 2026 1:41 AM" [ref=f6e799]: a minute ago
+      - main [ref=f6e125]:
+        - generic [ref=f6e126]:
+          - tablist [ref=f6e127]:
+            - tab "Launcher" [ref=f6e128]
+            - tab "schweinhart_synthetic_controls.ipynb" [ref=f6e368]
+            - tab "aoshavrina@cn-020:~" [selected] [ref=f6e984]
+          - generic "New Launcher" [ref=f6e133]
+        - tabpanel [ref=f6e998]:
+          - navigation "notebook actions" [ref=f6e999]
+          - region "notebook content" [ref=f6e1000]:
+            - textbox "Terminal input" [active] [ref=f6e1004]
+    - complementary "alternate sidebar" [ref=f6e304]:
+      - tablist "alternate sidebar" [ref=f6e305]:
+        - tab "Property Inspector" [ref=f6e306]
+        - tab [ref=f6e312]
+  - contentinfo [ref=f6e317]:
+    - generic [ref=f6e318]:
+      - generic [ref=f6e319]:
+        - switch "Simple" [ref=f6e321]:
+          - generic "Simple Interface (Ctrl+Shift+D)" [ref=f6e322]: Simple
+          - generic [aria-hidden] [ref=f6e323] [cursor=pointer]
+        - generic [ref=f6e325]:
+          - generic [ref=f6e326]: "1"
+          - generic [ref=f6e334]: "1"
+      - generic [ref=f6e341]: aoshavrina@cn-020:~

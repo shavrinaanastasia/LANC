@@ -1,0 +1,245 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e4]:
+        - text: 
+        - link [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "Logo" [ref=e6]
+      - listitem [ref=e7]:
+        - list [ref=e8]:
+          - listitem [ref=e9]:
+            - link " Сводка данных" [ref=e10] [cursor=pointer]:
+              - /url: /
+              - generic [ref=e11]: 
+              - text: Сводка данных
+          - heading "Мои вычисления" [level=3] [ref=e12]
+          - listitem [ref=e13]:
+            - link " Анализ задач" [ref=e14] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e15]: 
+              - text: Анализ задач
+            - list [ref=e16]:
+              - listitem [ref=e17]:
+                - generic [ref=e18]: 
+                - link "Завершенные" [ref=e19] [cursor=pointer]:
+                  - /url: /jobs/completed/
+              - listitem [ref=e20]:
+                - generic [ref=e21]: 
+                - link "Выполняющиеся" [ref=e22] [cursor=pointer]:
+                  - /url: /jobs/active/
+              - listitem [ref=e23]:
+                - generic [ref=e24]: 
+                - link "Ожидающие запуска" [ref=e25] [cursor=pointer]:
+                  - /url: /jobs/pending/
+          - listitem [ref=e26]:
+            - link " Статистика" [ref=e27] [cursor=pointer]:
+              - /url: /charts/
+              - generic [ref=e28]: 
+              - text: Статистика
+          - listitem [ref=e29]:
+            - link " Хранилище" [ref=e30] [cursor=pointer]:
+              - /url: /disk/
+              - generic [ref=e31]: 
+              - text: Хранилище
+          - heading "Мои проекты" [level=3] [ref=e32]
+          - listitem [ref=e33]:
+            - link " Список проектов" [ref=e34] [cursor=pointer]:
+              - /url: /projects/
+              - generic [ref=e35]: 
+              - text: Список проектов
+          - heading "Сервисы" [level=3] [ref=e36]
+          - listitem [ref=e37]:
+            - link " Работа в консоли" [ref=e38] [cursor=pointer]:
+              - /url: https://hpc.hse.ru/instructions/base
+              - generic [ref=e39]: 
+              - text: Работа в консоли
+          - listitem [ref=e40]:
+            - link " Jupyter Notebook" [ref=e41] [cursor=pointer]:
+              - /url: /jupyter/
+              - generic [ref=e42]: 
+              - text: Jupyter Notebook
+          - listitem [ref=e43]:
+            - link " Генератор sbatch" [ref=e44] [cursor=pointer]:
+              - /url: https://lk.hpc.hse.ru/sbatch
+              - generic [ref=e45]: 
+              - text: Генератор sbatch
+          - heading "Управление" [level=3] [ref=e46]
+          - listitem [ref=e47]:
+            - link " Настройки доступа" [ref=e48] [cursor=pointer]:
+              - /url: /manage_access/
+              - generic [ref=e49]: 
+              - text: Настройки доступа
+          - heading "Контакты" [level=3] [ref=e50]
+          - listitem [ref=e51]:
+            - link " Техподдержка" [expanded] [ref=e52] [cursor=pointer]:
+              - /url: https://pmo.hse.ru/servicedesk/customer/portal/34
+              - generic [ref=e53]: 
+              - text: Техподдержка
+          - listitem [ref=e54]:
+            - link "© Отдел суперкомпьютерного моделирования" [expanded] [ref=e55] [cursor=pointer]:
+              - /url: https://hpc.hse.ru
+  - generic [ref=e56]:
+    - banner [ref=e57]:
+      - generic:
+        - generic [ref=e58]:
+          - generic [ref=e59] [cursor=pointer]: 
+          - generic [ref=e62]:
+            - generic [ref=e63]: Отдел суперкомпьютерного моделирования НИУ ВШЭ
+            - generic [ref=e64]: HPC TaskMaster - система мониторинга эффективности задач суперкомпьютера
+        - generic [ref=e65]:
+          - generic [ref=e66]: Шаврина Анастасия Олеговна
+          - generic:
+            - link "User Avatar":
+              - /url: "#"
+              - img "User Avatar"
+            - text: 
+          - button "Тур по системе" [ref=e68] [cursor=pointer]
+    - generic [ref=e69]:
+      - generic [ref=e70]:
+        - alert [ref=e72]:
+          - paragraph [ref=e73]:
+            - text: ОБЪЯВЛЕНИЯ
+            - generic [ref=e74]:
+              - text: 1. В соответствии с
+              - link "п.4. правил доступа" [ref=e75] [cursor=pointer]:
+                - /url: https://hpc.hse.ru/rules
+              - text: ", все пользователи в своих публикациях должны ссылаться на использование ресурсов суперкомпьютера."
+            - generic [ref=e76]:
+              - text: 2. Суперкомпьютер переведен на ОС Rocky 9.8. Пожалуйста, обновляйте свое ПО для совместимости с новой ОС и запускайте все задачи в
+              - link "очереди rocky" [ref=e78] [cursor=pointer]:
+                - /url: https://hpc.hse.ru/instructions/rocky
+              - text: . Если у Вас есть сложности со сборкой ПО под новую ОС, обращайтесь
+              - link "в наш отдел." [ref=e79] [cursor=pointer]:
+                - /url: https://pmo.hse.ru/servicedesk/customer/portal/34
+              - text: Популярное ПО собирается централизованно и размещается на
+              - link "сайте отдела" [ref=e81] [cursor=pointer]:
+                - /url: https://hpc.hse.ru/software#applied
+              - link "суперкомпьютерного моделирования" [ref=e82] [cursor=pointer]:
+                - /url: https://hpc.hse.ru/software#applied
+              - text: .
+            - generic [ref=e83]:
+              - text: 3. Пользователей, являющихся сотрудниками НИУ ВШЭ, приглашаем подписаться на
+              - link "канал Суперкомпьютер Вышки" [ref=e85] [cursor=pointer]:
+                - /url: https://telemost.360.yandex.ru/join#f8136a16-facd-9325-b28e-b2d3aacece34
+              - text: в корпоративном Яндекс-мессенджере.4. Пожалуйста, проверьте свои домашние директории и
+              - link "удалите старые, временные и ненужные файлы" [ref=e86] [cursor=pointer]:
+                - /url: https://hpc.hse.ru/instructions/cleanup
+              - text: .5. Для управления каталогами в разделе scratch внедрена система HPC-Workspaces.
+              - link "Подробнее в инструкции." [ref=e87] [cursor=pointer]:
+                - /url: https://hpc.hse.ru/software/system/workspaces
+          - button "Close" [ref=e88] [cursor=pointer]: ×
+        - strong [ref=e92]: "Логин-сервер: OK"
+        - strong [ref=e96]: "Очередь задач: OK"
+        - strong [ref=e100]: "Файловое хранилище: OK"
+      - generic [ref=e101]:
+        - generic [ref=e104]:
+          - generic [ref=e105]: 
+          - generic [ref=e107]:
+            - generic [ref=e108]: Вычислительные задачи пользователя
+            - generic [ref=e109]:
+              - text: "Завершено:"
+              - link:
+                - /url: /jobs/completed/
+            - generic [ref=e110]:
+              - text: "Выполняется:"
+              - link:
+                - /url: /jobs/active/
+            - link "Статистика" [ref=e112] [cursor=pointer]:
+              - /url: /charts/
+        - generic [ref=e115]:
+          - generic [ref=e116]: 
+          - generic [ref=e118]:
+            - generic [ref=e119]: Задачи в очереди SLURM
+            - generic [ref=e120]: "Выполняется:"
+            - generic [ref=e121]: "Ожидает:"
+            - generic [ref=e122]: "Запрошено:"
+        - generic [ref=e125]:
+          - generic [ref=e126]: 
+          - generic [ref=e128]:
+            - generic [ref=e129]: Срок действия аккаунта
+            - generic [ref=e130]: до 23.07.2027
+            - link "Управление проектами" [ref=e132] [cursor=pointer]:
+              - /url: https://bpm.hse.ru/Runtime/Runtime/Form/SCOMP__f__MainPage/
+      - generic [ref=e133]:
+        - alert [ref=e135]:
+          - generic [ref=e136]: Квоты пользователя
+          - text: Сколько вычислительных ресурсов Вы можете использовать одновременно. Квоты могут меняться в зависимости от текущей загрузки суперкомпьютера.
+        - generic [ref=e137]:
+          - generic [ref=e139]:
+            - generic [ref=e141]:
+              - generic [ref=e142]: 0%
+              - generic [ref=e143]: занято
+            - generic [ref=e144]:
+              - generic [ref=e145]: CPU
+              - generic [ref=e150]: 0 / 0 ядер
+              - generic [ref=e151]: "в очереди: 0"
+          - generic [ref=e153]:
+            - generic [ref=e155]:
+              - generic [ref=e156]: 0%
+              - generic [ref=e157]: занято
+            - generic [ref=e158]:
+              - generic [ref=e159]: GPU
+              - generic [ref=e164]: 0 / 0 GPU
+              - generic [ref=e165]: "в очереди: 0"
+        - generic [ref=e168]:
+          - generic [ref=e169]: Использование СХД
+          - generic [ref=e174]:
+            - generic [ref=e175]: Домашний раздел /home
+            - generic [ref=e176]:
+              - generic [ref=e177]:
+                - generic [ref=e178]:
+                  - generic [ref=e179]:
+                    - generic [ref=e180]: 
+                    - text: Объём
+                  - generic [ref=e181]: 0%
+                - generic [ref=e182]:
+                  - progressbar
+                - generic [ref=e183]: 0 из 0
+              - generic [ref=e184]:
+                - generic [ref=e185]:
+                  - generic [ref=e186]:
+                    - generic [ref=e187]: 
+                    - text: Количество файлов
+                  - generic [ref=e188]: 0%
+                - generic [ref=e189]:
+                  - progressbar
+                - generic [ref=e190]: 0 из 0
+          - generic [ref=e191]:
+            - generic [ref=e192]: Временное хранилище /scratch
+            - generic [ref=e193]:
+              - generic [ref=e194]:
+                - generic [ref=e195]:
+                  - generic [ref=e196]:
+                    - generic [ref=e197]: 
+                    - text: Объём
+                  - generic [ref=e198]: 0%
+                - generic [ref=e199]:
+                  - progressbar
+                - generic [ref=e200]: 0 из 0
+              - generic [ref=e201]:
+                - generic [ref=e202]:
+                  - generic [ref=e203]:
+                    - generic [ref=e204]: 
+                    - text: Количество файлов
+                  - generic [ref=e205]: 0%
+                - generic [ref=e206]:
+                  - progressbar
+                - generic [ref=e207]: 0 из 0
+            - generic [ref=e208]:
+              - generic [ref=e209]: 
+              - link "Подробнее" [ref=e210] [cursor=pointer]:
+                - /url: https://hpc.hse.ru/instructions/cleanup
+      - generic [ref=e211]:
+        - alert [ref=e213]:
+          - generic [ref=e214]: Лимиты проектов
+          - text: "Вы можете пользоваться машинным временем проектов, в которых Вы участвуете:"
+        - generic [ref=e217]:
+          - 'link "1897: 3️⃣ Бифуркационный анализ в нейробиологических процессах" [ref=e220] [cursor=pointer]':
+            - /url: /project/1897
+          - generic [ref=e221]:
+            - generic [ref=e222]: "Осталось CPU часов: 988050 из 1000000 (99%)"
+            - progressbar [ref=e224]
+          - generic [ref=e225]:
+            - generic [ref=e226]: "Осталось GPU часов: 46442 из 50000 (93%)"
+            - progressbar [ref=e228]

@@ -1,0 +1,96 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link [ref=e6] [cursor=pointer]:
+        - /url: /hub/
+        - img "JupyterHub" [ref=e7]
+      - generic [ref=e8]:
+        - list [ref=e9]:
+          - listitem [ref=e10]:
+            - link "Home" [ref=e11] [cursor=pointer]:
+              - /url: /hub/home
+          - listitem [ref=e12]:
+            - link "Token" [ref=e13] [cursor=pointer]:
+              - /url: /hub/token
+          - listitem [ref=e14]:
+            - link "HPC TaskMaster" [ref=e15] [cursor=pointer]:
+              - /url: https://lk.hpc.hse.ru
+          - listitem [ref=e16]:
+            - link "Отдел суперкомпьютерного моделирования НИУ ВШЭ" [ref=e17] [cursor=pointer]:
+              - /url: https://hpc.hse.ru
+        - list [ref=e18]:
+          - listitem [ref=e19]:
+            - generic [ref=e20]:
+              - paragraph [ref=e21]: aoshavrina
+              - button "Logout" [ref=e22] [cursor=pointer]:
+                - generic [aria-hidden] [ref=e23]: 
+                - text: Logout
+  - generic [ref=e24]:
+    - heading "Параметры ноутбука" [level=1] [ref=e26]
+    - generic [ref=e27]:
+      - alert [ref=e29]:
+        - generic [ref=e30]:
+          - text: Ноутбуки без активных вычислений будут принудительно завершены. Чем короче указанное время выполнения задачи, тем быстрее она запустится. Рекомендуем Вам сконвертировать Jupyter-ноутбук в py-файл и запускать его на суперкомпьютере напрямую через очередь задач. Это быстрее и эффективнее.
+          - link "Инструкция." [ref=e31] [cursor=pointer]:
+            - /url: https://hpc.hse.ru/instructions/convertipynb
+      - button "Загрузка узлов кластера" [ref=e33] [cursor=pointer]
+      - form [ref=e34]:
+        - generic [ref=e35]: Выберите проект, к которому относится запуск
+        - combobox [ref=e36]:
+          - 'option "proj_1897: Бифуркационный анализ в нейробиологических процессах" [selected]'
+        - generic [ref=e37]:
+          - table [ref=e38]:
+            - rowgroup [ref=e39]:
+              - row [ref=e40]:
+                - cell "RESOURCE LIMIT" [ref=e41]
+                - cell "GRANTED" [ref=e42]
+                - cell "USED" [ref=e43]
+                - cell "REMAINING" [ref=e44]
+            - rowgroup [ref=e45]:
+              - row [ref=e46]:
+                - cell "CPU hours" [ref=e47]
+                - cell "1 000 000" [ref=e48]
+                - cell "11 950" [ref=e49]
+                - cell "988 050 (98.8%)" [ref=e50]:
+                  - generic [ref=e51]: 988 050 (98.8%
+                  - text: )
+              - row [ref=e52]:
+                - cell "GPU hours" [ref=e53]
+                - cell "50 000" [ref=e54]
+                - cell "3 558" [ref=e55]
+                - cell "46 442 (92.88%)" [ref=e56]:
+                  - generic [ref=e57]: 46 442 (92.88%
+                  - text: )
+          - text: "* Информация о"
+          - link "проектных лимитах" [ref=e58] [cursor=pointer]:
+            - /url: https://hpc.hse.ru/nts_decisions/30nov2022
+          - text: обновляется раз в сутки. Подробнее см. в
+          - link "системе HPC TaskMaster" [ref=e59] [cursor=pointer]:
+            - /url: https://lk.hpc.hse.ru/projects/
+        - generic [ref=e60]:
+          - text: Выберите
+          - link "тип узла" [ref=e61] [cursor=pointer]:
+            - /url: https://hpc.hse.ru/hardware/hpc-cluster#nodetypes
+        - combobox [ref=e62]:
+          - option "Любой узел" [selected]
+          - 'option "Type A: cn-[001-016] 4xGPU V100-32GB, 2xCPU (2x22 cores*2.1GHz), 768GB"'
+          - 'option "Type B: cn-[017-026] 4xGPU V100-32GB, 2xCPU (2x22 cores*2.1GHz), 1536GB"'
+          - 'option "Type D: cn-[030-040] 2xCPU (2x24 cores*3GHz), 768GB"'
+        - generic [ref=e63]: Выберите очередь
+        - combobox [ref=e64]:
+          - option "rocky - новая очередь с ОС Rocky Linux 9"
+          - 'option "test - для ускоренного запуска отладочных задач (ограничения: 1 GPU, 10 CPU, 1 задача, 30 минут)" [selected]'
+          - option "gpu-ef-quick - вытесняемая очередь для коротких студенческих задач на GPU A100 и H100"
+        - generic [ref=e65]: "Укажите максимальное время выполнения (ДД-ЧЧ:ММ)Пример: 00-01:00 - задача на 1 час, нули обязательныРазные типы узлов имеют разные ограничения по максимальной длительности задачи"
+        - textbox "Максимальное время выполнения задачи не должно превышать 30 минут" [ref=e79]: 00-00:30
+        - generic [ref=e67]: Укажите кол-во GPU (макс. 1)
+        - spinbutton [ref=e68]: "0"
+        - generic [ref=e69]: Укажите кол-во ядер CPU (макс. 10)
+        - spinbutton [ref=e70]: "1"
+        - generic [ref=e71]: Укажите адрес email для информирования об изменении статуса задачи
+        - textbox "username@hse.ru" [ref=e72]
+        - generic [ref=e73]:
+          - button "Запуск" [ref=e74] [cursor=pointer]
+          - text: 
+        - alert [ref=e77]:
+          - generic [ref=e78]: При высокой загрузке суперкомпьютера запуск ноутбуков с GPU может занять длительное время Используйте функцию информирования по email, чтобы получать уведомления о запуске задачи

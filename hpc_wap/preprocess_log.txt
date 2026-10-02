@@ -1,0 +1,53 @@
+sha256 14935bc6b407949ed8d375ee6e725370ed55ed3233205c20e7a2ac17c9e373c2
+chapters 361
+  lemmatised 50/361 chapters
+  lemmatised 100/361 chapters
+  lemmatised 150/361 chapters
+  lemmatised 200/361 chapters
+  lemmatised 250/361 chapters
+  lemmatised 300/361 chapters
+  lemmatised 350/361 chapters
+{
+  "protocol": "gromov2024-svd, chapters-as-documents adaptation (War and Peace)",
+  "sha256": "14935bc6b407949ed8d375ee6e725370ed55ed3233205c20e7a2ac17c9e373c2",
+  "chapters": 361,
+  "token_stats": {
+    "tokens": 568530,
+    "dropped_pos": 221342,
+    "dropped_non_cyrillic": 15648,
+    "dropped_stopword": 71606
+  },
+  "kept_tokens": 259934,
+  "unique_words": 17900,
+  "unique_bigrams": 152568,
+  "distinct_word_embedding_rows_d15": 10167,
+  "singular_values_top15": [
+    0.115787562385847,
+    0.07823104297253519,
+    0.06439389628162975,
+    0.06034923843492831,
+    0.05846062880987817,
+    0.05080863642742074,
+    0.04890059036043156,
+    0.04756647368116072,
+    0.04484979343295169,
+    0.043934863798990996,
+    0.043090323372070215,
+    0.04185955277660587,
+    0.04084135736937039,
+    0.03958691706649752,
+    0.03909542159812083
+  ],
+  "stop_word_list": "embedded NLTK russian list",
+  "stop_word_count": 151,
+  "drop_pos": [
+    "ADP",
+    "CCONJ",
+    "INTJ",
+    "PART",
+    "PUNCT",
+    "SCONJ",
+    "SYM"
+  ],
+  "natasha_version": "unknown"
+}

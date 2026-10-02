@@ -1,0 +1,129 @@
+- generic [ref=f7e1]:
+  - complementary [ref=f7e2]:
+    - navigation [ref=f7e3]:
+      - generic [ref=f7e4]:
+        - text: 
+        - link [ref=f7e5] [cursor=pointer]:
+          - /url: /
+          - img "Logo" [ref=f7e6]
+      - listitem [ref=f7e7]:
+        - list [ref=f7e8]:
+          - listitem [ref=f7e9]:
+            - link " Сводка данных" [ref=f7e10] [cursor=pointer]:
+              - /url: /
+              - generic [ref=f7e11]: 
+              - text: Сводка данных
+          - heading "Мои вычисления" [level=3] [ref=f7e12]
+          - listitem [ref=f7e13]:
+            - link " Анализ задач" [ref=f7e14] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f7e15]: 
+              - text: Анализ задач
+            - list [ref=f7e16]:
+              - listitem [ref=f7e17]:
+                - generic [ref=f7e18]: 
+                - link "Завершенные" [ref=f7e19] [cursor=pointer]:
+                  - /url: /jobs/completed/
+              - listitem [ref=f7e20]:
+                - generic [ref=f7e21]: 
+                - link "Выполняющиеся" [ref=f7e22] [cursor=pointer]:
+                  - /url: /jobs/active/
+              - listitem [ref=f7e23]:
+                - generic [ref=f7e24]: 
+                - link "Ожидающие запуска" [ref=f7e25] [cursor=pointer]:
+                  - /url: /jobs/pending/
+          - listitem [ref=f7e26]:
+            - link " Статистика" [ref=f7e27] [cursor=pointer]:
+              - /url: /charts/
+              - generic [ref=f7e28]: 
+              - text: Статистика
+          - listitem [ref=f7e29]:
+            - link " Хранилище" [ref=f7e30] [cursor=pointer]:
+              - /url: /disk/
+              - generic [ref=f7e31]: 
+              - text: Хранилище
+          - heading "Мои проекты" [level=3] [ref=f7e32]
+          - listitem [ref=f7e33]:
+            - link " Список проектов" [ref=f7e34] [cursor=pointer]:
+              - /url: /projects/
+              - generic [ref=f7e35]: 
+              - text: Список проектов
+          - heading "Сервисы" [level=3] [ref=f7e36]
+          - listitem [ref=f7e37]:
+            - link " Работа в консоли" [ref=f7e38] [cursor=pointer]:
+              - /url: https://hpc.hse.ru/instructions/base
+              - generic [ref=f7e39]: 
+              - text: Работа в консоли
+          - listitem [ref=f7e40]:
+            - link " Jupyter Notebook" [active] [ref=f7e41] [cursor=pointer]:
+              - /url: /jupyter/
+              - generic [ref=f7e42]: 
+              - text: Jupyter Notebook
+          - listitem [ref=f7e43]:
+            - link " Генератор sbatch" [ref=f7e44] [cursor=pointer]:
+              - /url: https://lk.hpc.hse.ru/sbatch
+              - generic [ref=f7e45]: 
+              - text: Генератор sbatch
+          - heading "Управление" [level=3] [ref=f7e46]
+          - listitem [ref=f7e47]:
+            - link " Настройки доступа" [ref=f7e48] [cursor=pointer]:
+              - /url: /manage_access/
+              - generic [ref=f7e49]: 
+              - text: Настройки доступа
+          - heading "Контакты" [level=3] [ref=f7e50]
+          - listitem [ref=f7e51]:
+            - link " Техподдержка" [expanded] [ref=f7e52] [cursor=pointer]:
+              - /url: https://pmo.hse.ru/servicedesk/customer/portal/34
+              - generic [ref=f7e53]: 
+              - text: Техподдержка
+          - listitem [ref=f7e54]:
+            - link "© Отдел суперкомпьютерного моделирования" [expanded] [ref=f7e55] [cursor=pointer]:
+              - /url: https://hpc.hse.ru
+  - generic [ref=f7e56]:
+    - banner [ref=f7e57]:
+      - generic:
+        - generic [ref=f7e58]:
+          - generic [ref=f7e59] [cursor=pointer]: 
+          - generic [ref=f7e62]:
+            - generic [ref=f7e63]: Отдел суперкомпьютерного моделирования НИУ ВШЭ
+            - generic [ref=f7e64]: HPC TaskMaster - система мониторинга эффективности задач суперкомпьютера
+        - generic [ref=f7e65]:
+          - generic [ref=f7e66]: Шаврина Анастасия Олеговна
+          - generic:
+            - link "User Avatar":
+              - /url: "#"
+              - img "User Avatar"
+            - text: 
+          - button "Тур по системе" [ref=f7e68] [cursor=pointer]
+    - generic [ref=f7e69]:
+      - generic [ref=f7e70]:
+        - generic [ref=f7e71]:
+          - generic [ref=f7e72]: "Выберите дату сбора данных /home:"
+          - combobox "Выберите дату сбора данных /home:" [disabled] [ref=f7e73]
+        - generic [ref=f7e74]:
+          - generic [ref=f7e75]: "Выберите дату сбора данных /scratch:"
+          - combobox "Выберите дату сбора данных /scratch:" [disabled] [ref=f7e76]
+      - generic [ref=f7e77]:
+        - generic [ref=f7e78]:
+          - heading "/home" [level=4] [ref=f7e79]
+          - generic [ref=f7e82]:
+            - generic [ref=f7e83]: 0.0%
+            - generic [ref=f7e84]: Использование /home в настоящий момент
+            - progressbar
+            - generic [ref=f7e85]: Занято 672 kB из 100 GB
+          - text: 
+          - generic:
+            - generic:
+              - table:
+                - rowgroup
+                - rowgroup
+        - generic [ref=f7e86]:
+          - heading "/scratch" [level=4] [ref=f7e87]
+          - generic [ref=f7e90]:
+            - generic [ref=f7e91]: 0.0%
+            - generic [ref=f7e92]: Использование /scratch в настоящий момент
+            - progressbar
+            - generic [ref=f7e93]: Занято 0 из 200 GB
+          - generic [ref=f7e94]:
+            - generic [aria-hidden] [ref=f7e95]: 
+            - text: Нет данных

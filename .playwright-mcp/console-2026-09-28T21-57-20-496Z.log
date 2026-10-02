@@ -1,0 +1,6 @@
+[    1092ms] [ERROR] Ошибка при декодировании: InvalidCharacterError: Failed to execute 'atob' on 'Window': The string to be decoded is not correctly encoded.
+    at base64Decode (https://saml.hse.ru/resources/y0k3w/login/hse-custom-theme-v1/js/setDpoSignUpLink.js:4:20)
+    at https://saml.hse.ru/resources/y0k3w/login/hse-custom-theme-v1/js/setDpoSignUpLink.js:17:30
+    at https://saml.hse.ru/resources/y0k3w/login/hse-custom-theme-v1/js/setDpoSignUpLink.js:34:3 @ https://saml.hse.ru/resources/y0k3w/login/hse-custom-theme-v1/js/setDpoSignUpLink.js:5
+[    1106ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ https://saml.hse.ru/realms/hse/protocol/openid-connect/auth?client_id=lk-hpc&redirect_uri=https%3A%2F%2Flk.hpc.hse.ru%2Foidc%2Fcallback%2F&scope=openid+profile+email&state=N4dIDK1slBPh6RVXyvTOPuGHcaJ5FB2rt0q60qqJa5Q&nonce=NJHTBoPLy6YkIXOZyL50IuG6ZecbDx5flTypMHpeJrI&response_type=code:0
+[    1259ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ https://saml.hse.ru/favicon.ico:0

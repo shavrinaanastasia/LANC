@@ -1,0 +1,273 @@
+- generic:
+  - generic [ref=f6e1]:
+    - banner [ref=f6e2]:
+      - link "Skip to left side bar" [ref=f6e4] [cursor=pointer]:
+        - /url: "#"
+      - img [ref=f6e6]: ">"
+      - navigation "main" [ref=f6e15]:
+        - menubar [ref=f6e17]:
+          - menuitem "File" [ref=f6e18]
+          - menuitem "Edit" [ref=f6e20]
+          - menuitem "View" [ref=f6e22]
+          - menuitem "Run" [ref=f6e24]
+          - menuitem "Kernel" [ref=f6e26]
+          - menuitem "Tabs" [ref=f6e28]
+          - menuitem "Settings" [ref=f6e30]
+          - menuitem "Help" [ref=f6e32]
+    - generic [ref=f6e34]:
+      - complementary "main sidebar" [ref=f6e35]:
+        - tablist "main sidebar" [ref=f6e36]:
+          - tab "File Browser (Ctrl+Shift+F)" [selected] [ref=f6e37]
+          - tab "Running Terminals and Kernels" [ref=f6e41]
+          - tab "Table of Contents" [ref=f6e46]
+          - tab "Softwares" [ref=f6e51]
+          - tab "Extension Manager" [ref=f6e53]
+      - generic [ref=f6e59]:
+        - region "File Browser Section" [ref=f6e61]:
+          - navigation "file browser" [ref=f6e62]:
+            - button "New Launcher (Ctrl+Shift+L)" [ref=f6e64] [cursor=pointer]
+            - button "New Folder" [ref=f6e71] [cursor=pointer]
+            - button "Upload Files" [ref=f6e78] [cursor=pointer]
+            - button "Refresh the file browser." [ref=f6e85] [cursor=pointer]
+          - textbox "Filter files by name" [ref=f6e93]
+          - generic [ref=f6e100]:
+            - generic "/home/aoshavrina" [ref=f6e101]:
+              - img [ref=f6e102] [cursor=pointer]
+            - text: /
+          - generic [ref=f6e104]:
+            - generic [ref=f6e105]:
+              - generic [ref=f6e106]: Name
+              - generic [ref=f6e110]: Last Modified
+            - list [ref=f6e111]:
+              - 'listitem "Name: jupyterhub_slurm Created: 2026-09-29 01:07:32 Modified: 2026-09-29 01:07:32 Writable: true" [ref=f6e112]':
+                - generic [ref=f6e116]: jupyterhub_slurm
+                - generic "Sep 29, 2026 1:07 AM" [ref=f6e117]: 30 minutes ago
+              - 'listitem "Name: jupyter_4359778.log Size: 29.7 KB Created: 2026-09-29 01:37:53 Modified: 2026-09-29 01:37:53 Writable: true" [ref=f6e359]':
+                - generic [ref=f6e122]: jupyter_4359778.log
+                - generic "Sep 29, 2026 1:37 AM" [ref=f6e358]: seconds ago
+              - 'listitem "Name: schweinhart_synthetic_controls.ipynb Size: 11 KB Created: 2026-09-29 01:35:54 Modified: 2026-09-29 01:35:54 Writable: true" [ref=f6e347]':
+                - generic [ref=f6e353]: schweinhart_synthetic_controls.ipynb
+                - generic "Sep 29, 2026 1:35 AM" [ref=f6e354]: 2 minutes ago
+        - main [ref=f6e125]:
+          - generic [ref=f6e126]:
+            - tablist [ref=f6e127]:
+              - tab "Launcher" [ref=f6e128]
+              - tab "schweinhart_synthetic_controls.ipynb" [selected] [ref=f6e368]
+            - generic "New Launcher" [ref=f6e133]
+          - tabpanel "schweinhart_synthetic_controls.ipynb" [ref=f6e383]:
+            - navigation "notebook actions" [ref=f6e384]:
+              - button "Save and create checkpoint (Ctrl+S)" [ref=f6e386] [cursor=pointer]
+              - button "Insert a cell below (B)" [ref=f6e393] [cursor=pointer]
+              - button "Cut the selected cells (X)" [ref=f6e400] [cursor=pointer]
+              - button "Copy the selected cells (C)" [ref=f6e407] [cursor=pointer]
+              - button "Paste cells from the clipboard (V)" [ref=f6e414] [cursor=pointer]
+              - button "Run the selected cells and advance (Shift+Enter)" [ref=f6e421] [cursor=pointer]
+              - button "Interrupt the kernel (I)" [ref=f6e428] [cursor=pointer]
+              - button "Restart the kernel (0)" [ref=f6e436] [cursor=pointer]
+              - button "Restart Kernel and Run All Cells…" [ref=f6e443] [cursor=pointer]
+              - combobox "Cell type" [ref=f6e451]:
+                - option "-"
+                - option "Code"
+                - option "Markdown" [selected]
+                - option "Raw"
+              - button "No Kernel" [ref=f6e454] [cursor=pointer]
+              - generic [ref=f6e456]:
+                - button [disabled]
+              - progressbar [ref=f6e459]
+            - region "notebook content" [ref=f6e462]:
+              - generic [ref=f6e463]:
+                - generic [ref=f6e464]:
+                  - button "Copy the selected cells and paste them below the selection" [ref=f6e466] [cursor=pointer]
+                  - button "Move Cells Up" [ref=f6e473] [cursor=pointer]
+                  - button "Move Cells Down" [ref=f6e479] [cursor=pointer]
+                  - button "Insert Cell Above (A)" [ref=f6e485] [cursor=pointer]
+                  - button "Insert a cell below (B)" [ref=f6e493] [cursor=pointer]
+                  - button "Delete Cells (D)" [ref=f6e501] [cursor=pointer]
+                - generic [ref=f6e510]:
+                  - button [ref=f6e512] [cursor=pointer]
+                  - generic [ref=f6e513]:
+                    - heading "Verified local full run" [level=2] [ref=f6e514]
+                    - paragraph [ref=f6e515]:
+                      - text: A complete local CPU run was made on 2026-09-25 with 100,000 points, the six-scale ladder shown below,
+                      - code [ref=f6e516]: alpha = 1..10
+                      - text: ", and seed"
+                      - code [ref=f6e517]: "20260926"
+                      - text: ". Immutable output:"
+                      - code [ref=f6e518]: results/20260925T233947Z-7c7f769921/schweinhart_controls.json
+                      - text: . All 95% dimension intervals had relative width below 10%.
+                    - table [ref=f6e519]:
+                      - rowgroup [ref=f6e520]:
+                        - row [ref=f6e521]:
+                          - columnheader "Shape" [ref=f6e522]
+                          - columnheader "Known dimension" [ref=f6e523]
+                          - columnheader "Estimate range, alpha 1 to 10" [ref=f6e524]
+                          - columnheader "Best APE" [ref=f6e525]
+                          - columnheader "Mean APE, ours" [ref=f6e526]
+                          - columnheader "Mean APE, paper Table A1" [ref=f6e527]
+                      - rowgroup [ref=f6e528]:
+                        - row [ref=f6e529]:
+                          - cell "Sphere" [ref=f6e530]
+                          - cell "2.000" [ref=f6e531]
+                          - cell "2.0004 to 2.0071" [ref=f6e532]
+                          - cell "0.000%" [ref=f6e533]
+                          - cell "0.140%" [ref=f6e534]
+                          - cell "0.144%" [ref=f6e535]
+                        - row [ref=f6e536]:
+                          - cell "Swiss roll" [ref=f6e537]
+                          - cell "2.000" [ref=f6e538]
+                          - cell "1.9710 to 1.9032" [ref=f6e539]
+                          - cell "1.450%" [ref=f6e540]
+                          - cell "3.078%" [ref=f6e541]
+                          - cell "0.958%" [ref=f6e542]
+                        - row [ref=f6e543]:
+                          - cell "Sierpinski carpet" [ref=f6e544]
+                          - cell "1.8928" [ref=f6e545]
+                          - cell "1.8891 to 1.8775" [ref=f6e546]
+                          - cell "0.196%" [ref=f6e547]
+                          - cell "0.742%" [ref=f6e548]
+                          - cell "0.230%" [ref=f6e549]
+                        - row [ref=f6e550]:
+                          - cell "Menger sponge" [ref=f6e551]
+                          - cell "2.7268" [ref=f6e552]
+                          - cell "2.6956 to 2.7212" [ref=f6e553]
+                          - cell "0.207%" [ref=f6e554]
+                          - cell "0.961%" [ref=f6e555]
+                          - cell "1.836%" [ref=f6e556]
+                    - paragraph [ref=f6e557]:
+                      - text: "Interpretation: the implementation recovers each known dimension well enough for a numerical control. This is"
+                      - strong [ref=f6e558]: not
+                      - text: "an exact numerical replication of their Table A1: the Swiss-roll APE is materially higher, and their unpublished ladder, point samples, and embedding construction prevent matching their raw numbers exactly."
+              - generic [ref=f6e565]:
+                - heading "Schweinhart Synthetic Controls" [level=1] [ref=f6e566]
+                - paragraph [ref=f6e567]:
+                  - text: This notebook validates the MST-growth implementation on four point clouds with known intrinsic dimensions. It does
+                  - strong [ref=f6e568]: not
+                  - text: analyse language and does not change the preregistered dialogue-PHD experiment.
+                - paragraph [ref=f6e569]: "The controls follow the set used in Appendix A of Gromov, Borodin, and Yerbolova (2024): a sphere, Swiss roll, Sierpinski carpet, and Menger sponge. The paper's exact synthetic sample-size ladder was not published, so the ladder below is an explicit adaptation rather than an exact numerical replication."
+              - generic [ref=f6e576]:
+                - heading "What should happen" [level=2] [ref=f6e577]
+                - paragraph [ref=f6e578]:
+                  - text: At sufficiently large samples, the estimate at suitable
+                  - code [ref=f6e579]: alpha
+                  - text: "values should be near:"
+                - table [ref=f6e580]:
+                  - rowgroup [ref=f6e581]:
+                    - row [ref=f6e582]:
+                      - columnheader "Shape" [ref=f6e583]
+                      - columnheader "Known Hausdorff dimension" [ref=f6e584]
+                  - rowgroup [ref=f6e585]:
+                    - row [ref=f6e586]:
+                      - cell "Sphere surface" [ref=f6e587]
+                      - cell "2" [ref=f6e588]
+                    - row [ref=f6e589]:
+                      - cell "Swiss roll" [ref=f6e590]
+                      - cell "2" [ref=f6e591]
+                    - row [ref=f6e592]:
+                      - cell "Sierpinski carpet" [ref=f6e593]
+                      - cell [ref=f6e594]:
+                        - code [ref=f6e595]: log(8) / log(3) ~= 1.893
+                    - row [ref=f6e596]:
+                      - cell "Menger sponge" [ref=f6e597]
+                      - cell [ref=f6e598]:
+                        - code [ref=f6e599]: log(20) / log(3) ~= 2.727
+                - paragraph [ref=f6e600]: A smoke run is useful for checking installation and reproducibility. The full run uses 100,000 points, as stated for their synthetic controls, and can take substantially longer.
+                - paragraph [ref=f6e601]: "The paper does not publish the raw estimated dimensions for every run. It publishes true dimensions and Appendix A Table A1 absolute percentage errors (APE). Therefore, the strongest check available from the paper is: recover the known dimension, then compare our APE curve with the published APE curve. Exact equality is not expected because the exact sample-size ladder, random samples, and high-dimensional embeddings are not disclosed."
+              - generic [ref=f6e606]:
+                - generic [ref=f6e607]: "[ ]:"
+                - generic [ref=f6e609]:
+                  - textbox [ref=f6e610]
+                  - generic [ref=f6e613]: "# Point this at a clone of this repository. # If the notebook was opened from the repository, use that directory instead. from pathlib import Path REPO = Path('/content/LANC') REPO_URL = '' # Example: 'https://github.com/OWNER/LANC.git' if not REPO.exists(): local_candidates = [ Path.cwd(), Path(r'C:/Users/masog/OneDrive/Desktop/Документы/LANC'), ] REPO = next((path for path in local_candidates if (path / 'pyproject.toml').exists()), REPO) if not REPO.exists(): if not REPO_URL: raise RuntimeError('Clone the repository first, then set REPO to its Colab path.') !git clone $REPO_URL $REPO %cd $REPO print(REPO.resolve())"
+              - generic [ref=f6e621]:
+                - generic [ref=f6e622]: "[ ]:"
+                - generic [ref=f6e624]:
+                  - textbox [ref=f6e625]
+                  - generic [ref=f6e626]: "# Colab already supplies NumPy, SciPy, scikit-learn, and PyTorch. # Install this checkout without replacing Colab's CUDA-enabled PyTorch. import sys !{sys.executable} -m pip install -q -e . --no-deps # Confirm that the numerical packages used by the controls are available. import numpy, scipy print('NumPy:', numpy.__version__, '| SciPy:', scipy.__version__)"
+              - generic [ref=f6e636]:
+                - heading "Published Appendix A reference values" [level=2] [ref=f6e637]
+                - paragraph [ref=f6e638]:
+                  - text: Table A1 reports APE for
+                  - code [ref=f6e639]: alpha = 1, ..., 10
+                  - text: . We record the four relevant columns below. Swiss roll, Sierpinski carpet, and Menger sponge are directly comparable shapes. The paper's sphere setup uses an unpublished high-dimensional embedding construction, whereas this notebook uses an ordinary 2-sphere in 3D; treat its paper APE as context, not an equality target.
+              - generic [ref=f6e644]:
+                - generic [ref=f6e645]: "[ ]:"
+                - generic [ref=f6e647]:
+                  - textbox [ref=f6e648]
+                  - generic [ref=f6e651]: "# Values transcribed from Gromov et al. (2024), Appendix A, Table A1. # They are percentage errors, not the paper's raw dimension estimates. import pandas as pd PAPER_A1_APE_PERCENT = { 'sphere': [0.07, 0.03, 0.03, 0.08, 0.12, 0.16, 0.19, 0.22, 0.25, 0.29], 'swiss_roll': [0.43, 0.43, 0.47, 0.55, 0.68, 0.85, 1.08, 1.36, 1.69, 2.04], 'sierpinski_carpet': [0.07, 0.03, 0.03, 0.18, 0.24, 0.28, 0.32, 0.35, 0.38, 0.42], 'menger_sponge': [1.56, 1.68, 1.76, 1.82, 1.85, 1.87, 1.90, 1.92, 1.97, 2.03], } pd.DataFrame(PAPER_A1_APE_PERCENT, index=range(1, 11)).rename_axis('alpha')"
+              - generic [ref=f6e661]:
+                - heading "Full local validation" [level=2] [ref=f6e662]
+                - paragraph [ref=f6e663]: This is the complete locally verified 100,000-point run. It can take several minutes on CPU.
+              - generic [ref=f6e668]:
+                - generic [ref=f6e669]: "[ ]:"
+                - generic [ref=f6e671]:
+                  - textbox [ref=f6e672]
+                  - generic [ref=f6e673]: from agent_language_geometry.schweinhart_controls import run_schweinhart_controls FULL_POINTS = 100_000 FULL_SIZES = [10_000, 20_000, 40_000, 60_000, 80_000, 100_000] ALPHAS = list(range(1, 11)) SEED = 20260926 full = run_schweinhart_controls(FULL_POINTS, FULL_SIZES, ALPHAS, SEED) print('Completed deterministic full run.')
+              - generic [ref=f6e681]:
+                - generic [ref=f6e682]: "[ ]:"
+                - generic [ref=f6e684]:
+                  - textbox [ref=f6e685]
+                  - generic [ref=f6e686]: "# Display one row per shape and alpha. import pandas as pd rows = [] CONTROL_RESULT = full for name, result in CONTROL_RESULT.items(): for estimate in result['alpha_estimates']: rows.append({ 'shape': name, 'known_dimension': result['known_dimension'], 'alpha': estimate['alpha'], 'estimated_dimension': estimate['dimension'], 'r_squared': estimate['r_squared'], 'ci_95': estimate['dimension_ci_95'], }) table = pd.DataFrame(rows) table['our_ape_percent'] = ( (table['estimated_dimension'] - table['known_dimension']).abs() / table['known_dimension'] * 100 ) table"
+              - generic [ref=f6e694]:
+                - generic [ref=f6e695]: "[ ]:"
+                - generic [ref=f6e697]:
+                  - textbox [ref=f6e698]
+                  - generic [ref=f6e701]: "# Compare our run with the paper's published APE reference. # This is descriptive, not a replication pass/fail test: the paper omits its exact ladder and samples. paper_ape = pd.DataFrame(PAPER_A1_APE_PERCENT, index=range(1, 11)).rename_axis('alpha') comparison = table.copy() comparison['paper_ape_percent'] = [ paper_ape.loc[int(alpha), shape] for shape, alpha in zip(comparison['shape'], comparison['alpha']) ] comparison['ape_difference_percentage_points'] = ( comparison['our_ape_percent'] - comparison['paper_ape_percent'] ) comparison[[ 'shape', 'alpha', 'known_dimension', 'estimated_dimension', 'our_ape_percent', 'paper_ape_percent', 'ape_difference_percentage_points', 'r_squared' ]]"
+              - generic [ref=f6e709]:
+                - generic [ref=f6e710]: "[ ]:"
+                - generic [ref=f6e712]:
+                  - textbox [ref=f6e713]
+                  - generic [ref=f6e716]: "# A stable region should be visually near the horizontal known-dimension line. import matplotlib.pyplot as plt fig, axes = plt.subplots(2, 2, figsize=(12, 8), sharex=True) for axis, (name, result) in zip(axes.flat, CONTROL_RESULT.items()): subset = table[table['shape'] == name] axis.plot(subset['alpha'], subset['estimated_dimension'], marker='o') axis.axhline(result['known_dimension'], color='black', linestyle='--', label='known') axis.set_title(name) axis.set_xlabel('alpha') axis.set_ylabel('estimated dimension') axis.legend() fig.tight_layout()"
+              - generic [ref=f6e726]:
+                - heading "Immutable run artifact" [level=2] [ref=f6e727]
+                - paragraph [ref=f6e728]: The full numerical output used in this executed notebook is retained as an immutable ignored run directory.
+                - paragraph [ref=f6e729]: The alpha sweep and the 100,000-point scale follow the paper. The ladder is our documented adaptation because the authors do not publish theirs.
+              - generic [ref=f6e734]:
+                - generic [ref=f6e735]: "[ ]:"
+                - generic [ref=f6e737]:
+                  - textbox [ref=f6e738]
+                  - generic [ref=f6e739]: "RUN_DIR = REPO / 'results' / '20260925T233947Z-7c7f769921' RESULT_PATH = RUN_DIR / 'schweinhart_controls.json' assert RESULT_PATH.exists(), f'Missing immutable result: {RESULT_PATH}' print(RESULT_PATH)"
+              - generic [ref=f6e749]:
+                - 'heading "Important: this is not yet the paper''s language experiment" [level=2] [ref=f6e750]'
+                - paragraph [ref=f6e751]:
+                  - text: One copy of
+                  - emphasis [ref=f6e752]: War and Peace
+                  - text: cannot simply be placed into the original protocol. Gromov et al. construct a
+                  - code [ref=f6e753]: word x text
+                  - text: matrix across thousands of separate literary works. With one novel there is only one document column. Splitting the novel into chapters or paragraphs would create a useful adapted experiment, but it would not be a reproduction and should not be expected to yield their values near 9.
+                - paragraph [ref=f6e754]: Exact reproduction of their language tables requires their corpus manifests, text editions, stop-word lists, entity/number replacement rules, lemmatiser versions, sample-size ladder, and random seeds.
+      - complementary "alternate sidebar" [ref=f6e304]:
+        - tablist "alternate sidebar" [ref=f6e305]:
+          - tab "Property Inspector" [ref=f6e306]
+          - tab [ref=f6e312]
+    - contentinfo [ref=f6e317]:
+      - generic [ref=f6e318]:
+        - generic [ref=f6e319]:
+          - switch "Simple" [ref=f6e321]:
+            - generic "Simple Interface (Ctrl+Shift+D)" [ref=f6e322]: Simple
+            - generic [aria-hidden] [ref=f6e323] [cursor=pointer]
+          - generic [ref=f6e325]:
+            - generic [ref=f6e326]: "0"
+            - generic [ref=f6e334]: "0"
+          - generic [ref=f6e755]: No Kernel | Initializing
+        - generic [ref=f6e341]:
+          - generic [ref=f6e342]: schweinhart_synthetic_controls.ipynb
+          - generic [ref=f6e756]: Ln 1, Col 1
+          - 'generic "Notebook not trusted: 0 of 15 cells trusted." [ref=f6e757]'
+          - generic "Notebook is in Command mode" [ref=f6e764]: "Mode: Command"
+  - generic [ref=f6e766]:
+    - generic [ref=f6e767]: Select Kernel
+    - generic [ref=f6e768]:
+      - generic [ref=f6e769]: "Select kernel for: \"schweinhart_synthetic_controls.ipynb\""
+      - combobox [ref=f6e771]:
+        - option "AIDAO 2025 [python-olymp_2025]" [selected]
+        - option "Google Colab Analog 2024 (PyTorch 2.5.1 + TensorFlow 2.18) [python-google_colab_gpu_2024]"
+        - option "Google Colab Analog 2025 (PyTorch 2.6.0 + TensorFlow 2.19) [python-google_colab_gpu_2025]"
+        - option "ML-Agents [python-mlagents]"
+        - option "PyTorch 2.1 + TenforFlow 2.14 [python-olymp_v1]"
+        - option "PyTorch 2.2.1 CUDA 11.8 [python-lingvo]"
+        - option "PyTorch 2.4 CUDA 12.4 [python-pytorch2_4]"
+        - option "Smilei 5.1 [python-smilei5_1]"
+        - option "No Kernel"
+        - option "R 4.3.2 [python-olymp_v1]"
+    - generic [ref=f6e772]:
+      - button "No Kernel" [ref=f6e773]
+      - button "Select" [active] [ref=f6e775]

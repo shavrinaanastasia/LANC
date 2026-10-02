@@ -1,0 +1,155 @@
+- generic [ref=f6e1]:
+  - banner [ref=f6e2]:
+    - link "Skip to left side bar" [ref=f6e4] [cursor=pointer]:
+      - /url: "#"
+    - img [ref=f6e6]: ">"
+    - navigation "main" [ref=f6e15]:
+      - menubar [ref=f6e17]:
+        - menuitem "File" [ref=f6e18]
+        - menuitem "Edit" [ref=f6e20]
+        - menuitem "View" [ref=f6e22]
+        - menuitem "Run" [ref=f6e24]
+        - menuitem "Kernel" [ref=f6e26]
+        - menuitem "Tabs" [ref=f6e28]
+        - menuitem "Settings" [ref=f6e30]
+        - menuitem "Help" [ref=f6e32]
+  - generic [ref=f6e34]:
+    - complementary "main sidebar" [ref=f6e35]:
+      - tablist "main sidebar" [ref=f6e36]:
+        - tab "File Browser (Ctrl+Shift+F)" [selected] [ref=f6e37]
+        - tab "Running Terminals and Kernels" [ref=f6e41]
+        - tab "Table of Contents" [ref=f6e46]
+        - tab "Softwares" [ref=f6e51]
+        - tab "Extension Manager" [ref=f6e53]
+    - generic [ref=f6e59]:
+      - region "File Browser Section" [ref=f6e61]:
+        - navigation "file browser" [ref=f6e62]:
+          - button "New Launcher (Ctrl+Shift+L)" [ref=f6e64] [cursor=pointer]
+          - button "New Folder" [ref=f6e71] [cursor=pointer]
+          - button "Upload Files" [ref=f6e78] [cursor=pointer]
+          - button "Refresh the file browser." [ref=f6e85] [cursor=pointer]
+        - textbox "Filter files by name" [ref=f6e93]
+        - generic [ref=f6e100]:
+          - generic "/home/aoshavrina" [ref=f6e101]:
+            - img [ref=f6e102] [cursor=pointer]
+          - text: /
+        - generic [ref=f6e104]:
+          - generic [ref=f6e105]:
+            - generic [ref=f6e106]: Name
+            - generic [ref=f6e110]: Last Modified
+          - list [ref=f6e111]:
+            - 'listitem "Name: jupyterhub_slurm Created: 2026-09-29 01:07:32 Modified: 2026-09-29 01:07:32 Writable: true" [ref=f6e112]':
+              - generic [ref=f6e116]: jupyterhub_slurm
+              - generic "Sep 29, 2026 1:07 AM" [ref=f6e117]: 28 minutes ago
+            - 'listitem "Name: jupyter_4359778.log Size: 22.8 KB Created: 2026-09-29 01:35:54 Modified: 2026-09-29 01:35:54 Writable: true" [ref=f6e345]':
+              - generic [ref=f6e122]: jupyter_4359778.log
+              - generic "Sep 29, 2026 1:35 AM" [ref=f6e346]: seconds ago
+            - 'listitem "Name: schweinhart_synthetic_controls.ipynb Size: 11 KB Created: 2026-09-29 01:35:54 Modified: 2026-09-29 01:35:54 Writable: true" [ref=f6e347]':
+              - generic [ref=f6e353]: schweinhart_synthetic_controls.ipynb
+              - generic "Sep 29, 2026 1:35 AM" [ref=f6e354]: seconds ago
+      - main [ref=f6e125]:
+        - generic [ref=f6e126]:
+          - tablist [ref=f6e127]:
+            - tab "Launcher" [selected] [ref=f6e128]
+          - generic "New Launcher" [ref=f6e133]
+        - tabpanel [ref=f6e137]:
+          - navigation "notebook actions" [ref=f6e138]
+          - region "notebook content" [active] [ref=f6e139]:
+            - generic [ref=f6e141]:
+              - generic:
+                - heading [level=3]
+              - generic [ref=f6e142]:
+                - heading "Notebook" [level=2] [ref=f6e149]
+                - generic [ref=f6e150]:
+                  - generic "Google Colab Analog 2024 (PyTorch 2.5.1 + TensorFlow 2.18) [python-google_colab_gpu_2024]" [ref=f6e151] [cursor=pointer]:
+                    - generic "Google Colab Analog 2024 (PyTorch 2.5.1 + TensorFlow 2.18) [python-google_colab_gpu_2024]" [ref=f6e154]:
+                      - paragraph [ref=f6e155]: Google Colab Analog 2024 (PyTorch 2.5.1 + TensorFlow 2.18) [python-google_colab_gpu_2024]
+                  - generic "AIDAO 2025 [python-olymp_2025]" [ref=f6e156] [cursor=pointer]:
+                    - generic "AIDAO 2025 [python-olymp_2025]" [ref=f6e159]:
+                      - paragraph [ref=f6e160]: AIDAO 2025 [python-olymp_2025]
+                  - generic "Google Colab Analog 2025 (PyTorch 2.6.0 + TensorFlow 2.19) [python-google_colab_gpu_2025]" [ref=f6e161] [cursor=pointer]:
+                    - generic "Google Colab Analog 2025 (PyTorch 2.6.0 + TensorFlow 2.19) [python-google_colab_gpu_2025]" [ref=f6e164]:
+                      - paragraph [ref=f6e165]: Google Colab Analog 2025 (PyTorch 2.6.0 + TensorFlow 2.19) [python-google_colab_gpu_2025]
+                  - generic "ML-Agents [python-mlagents]" [ref=f6e166] [cursor=pointer]:
+                    - generic "ML-Agents [python-mlagents]" [ref=f6e169]:
+                      - paragraph [ref=f6e170]: ML-Agents [python-mlagents]
+                  - generic "PyTorch 2.1 + TenforFlow 2.14 [python-olymp_v1]" [ref=f6e171] [cursor=pointer]:
+                    - generic "PyTorch 2.1 + TenforFlow 2.14 [python-olymp_v1]" [ref=f6e174]:
+                      - paragraph [ref=f6e175]: PyTorch 2.1 + TenforFlow 2.14 [python-olymp_v1]
+                  - generic "PyTorch 2.2.1 CUDA 11.8 [python-lingvo]" [ref=f6e176] [cursor=pointer]:
+                    - generic "PyTorch 2.2.1 CUDA 11.8 [python-lingvo]" [ref=f6e179]:
+                      - paragraph [ref=f6e180]: PyTorch 2.2.1 CUDA 11.8 [python-lingvo]
+                  - generic "PyTorch 2.4 CUDA 12.4 [python-pytorch2_4]" [ref=f6e181] [cursor=pointer]:
+                    - generic "PyTorch 2.4 CUDA 12.4 [python-pytorch2_4]" [ref=f6e184]:
+                      - paragraph [ref=f6e185]: PyTorch 2.4 CUDA 12.4 [python-pytorch2_4]
+                  - generic "R 4.3.2 [python-olymp_v1]" [ref=f6e186] [cursor=pointer]:
+                    - generic "R 4.3.2 [python-olymp_v1]" [ref=f6e189]:
+                      - paragraph [ref=f6e190]: R 4.3.2 [python-olymp_v1]
+                  - generic "Smilei 5.1 [python-smilei5_1]" [ref=f6e191] [cursor=pointer]:
+                    - generic "Smilei 5.1 [python-smilei5_1]" [ref=f6e194]:
+                      - paragraph [ref=f6e195]: Smilei 5.1 [python-smilei5_1]
+              - generic [ref=f6e196]:
+                - heading "Console" [level=2] [ref=f6e204]
+                - generic [ref=f6e205]:
+                  - generic "Google Colab Analog 2024 (PyTorch 2.5.1 + TensorFlow 2.18) [python-google_colab_gpu_2024]" [ref=f6e206] [cursor=pointer]:
+                    - generic "Google Colab Analog 2024 (PyTorch 2.5.1 + TensorFlow 2.18) [python-google_colab_gpu_2024]" [ref=f6e209]:
+                      - paragraph [ref=f6e210]: Google Colab Analog 2024 (PyTorch 2.5.1 + TensorFlow 2.18) [python-google_colab_gpu_2024]
+                  - generic "AIDAO 2025 [python-olymp_2025]" [ref=f6e211] [cursor=pointer]:
+                    - generic "AIDAO 2025 [python-olymp_2025]" [ref=f6e214]:
+                      - paragraph [ref=f6e215]: AIDAO 2025 [python-olymp_2025]
+                  - generic "Google Colab Analog 2025 (PyTorch 2.6.0 + TensorFlow 2.19) [python-google_colab_gpu_2025]" [ref=f6e216] [cursor=pointer]:
+                    - generic "Google Colab Analog 2025 (PyTorch 2.6.0 + TensorFlow 2.19) [python-google_colab_gpu_2025]" [ref=f6e219]:
+                      - paragraph [ref=f6e220]: Google Colab Analog 2025 (PyTorch 2.6.0 + TensorFlow 2.19) [python-google_colab_gpu_2025]
+                  - generic "ML-Agents [python-mlagents]" [ref=f6e221] [cursor=pointer]:
+                    - generic "ML-Agents [python-mlagents]" [ref=f6e224]:
+                      - paragraph [ref=f6e225]: ML-Agents [python-mlagents]
+                  - generic "PyTorch 2.1 + TenforFlow 2.14 [python-olymp_v1]" [ref=f6e226] [cursor=pointer]:
+                    - generic "PyTorch 2.1 + TenforFlow 2.14 [python-olymp_v1]" [ref=f6e229]:
+                      - paragraph [ref=f6e230]: PyTorch 2.1 + TenforFlow 2.14 [python-olymp_v1]
+                  - generic "PyTorch 2.2.1 CUDA 11.8 [python-lingvo]" [ref=f6e231] [cursor=pointer]:
+                    - generic "PyTorch 2.2.1 CUDA 11.8 [python-lingvo]" [ref=f6e234]:
+                      - paragraph [ref=f6e235]: PyTorch 2.2.1 CUDA 11.8 [python-lingvo]
+                  - generic "PyTorch 2.4 CUDA 12.4 [python-pytorch2_4]" [ref=f6e236] [cursor=pointer]:
+                    - generic "PyTorch 2.4 CUDA 12.4 [python-pytorch2_4]" [ref=f6e239]:
+                      - paragraph [ref=f6e240]: PyTorch 2.4 CUDA 12.4 [python-pytorch2_4]
+                  - generic "R 4.3.2 [python-olymp_v1]" [ref=f6e241] [cursor=pointer]:
+                    - generic "R 4.3.2 [python-olymp_v1]" [ref=f6e244]:
+                      - paragraph [ref=f6e245]: R 4.3.2 [python-olymp_v1]
+                  - generic "Smilei 5.1 [python-smilei5_1]" [ref=f6e246] [cursor=pointer]:
+                    - generic "Smilei 5.1 [python-smilei5_1]" [ref=f6e249]:
+                      - paragraph [ref=f6e250]: Smilei 5.1 [python-smilei5_1]
+              - generic [ref=f6e251]:
+                - heading "Other" [level=2] [ref=f6e257]
+                - generic [ref=f6e258]:
+                  - generic "Start a new terminal session" [ref=f6e259] [cursor=pointer]:
+                    - generic "Start a new terminal session" [ref=f6e265]:
+                      - paragraph [ref=f6e266]: Terminal
+                  - generic "Create a new text file" [ref=f6e267] [cursor=pointer]:
+                    - generic "Create a new text file" [ref=f6e272]:
+                      - paragraph [ref=f6e273]: Text File
+                  - generic "Create a new markdown file" [ref=f6e274] [cursor=pointer]:
+                    - generic "Create a new markdown file" [ref=f6e279]:
+                      - paragraph [ref=f6e280]: Markdown File
+                  - generic "Create a new Python file" [ref=f6e281] [cursor=pointer]:
+                    - generic "Create a new Python file" [ref=f6e288]:
+                      - paragraph [ref=f6e289]: Python File
+                  - generic "Create a new R file" [ref=f6e290] [cursor=pointer]:
+                    - generic "Create a new R file" [ref=f6e295]:
+                      - paragraph [ref=f6e296]: R File
+                  - generic "Live updating code documentation from the active kernel" [ref=f6e297] [cursor=pointer]:
+                    - generic "Live updating code documentation from the active kernel" [ref=f6e302]:
+                      - paragraph [ref=f6e303]: Show Contextual Help
+    - complementary "alternate sidebar" [ref=f6e304]:
+      - tablist "alternate sidebar" [ref=f6e305]:
+        - tab "Property Inspector" [ref=f6e306]
+        - tab [ref=f6e312]
+  - contentinfo [ref=f6e317]:
+    - generic [ref=f6e318]:
+      - generic [ref=f6e319]:
+        - switch "Simple" [ref=f6e321]:
+          - generic "Simple Interface (Ctrl+Shift+D)" [ref=f6e322]: Simple
+          - generic [aria-hidden] [ref=f6e323] [cursor=pointer]
+        - generic [ref=f6e325]:
+          - generic [ref=f6e326]: "0"
+          - generic [ref=f6e334]: "0"
+      - generic [ref=f6e341]: Launcher

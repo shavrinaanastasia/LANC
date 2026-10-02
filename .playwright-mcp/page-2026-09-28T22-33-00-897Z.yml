@@ -1,0 +1,45 @@
+- generic [active] [ref=f5e1]:
+  - navigation [ref=f5e2]:
+    - generic [ref=f5e3]:
+      - link [ref=f5e6] [cursor=pointer]:
+        - /url: /hub/
+        - img "JupyterHub" [ref=f5e7]
+      - generic [ref=f5e8]:
+        - list [ref=f5e9]:
+          - listitem [ref=f5e10]:
+            - link "Home" [ref=f5e11] [cursor=pointer]:
+              - /url: /hub/home
+          - listitem [ref=f5e12]:
+            - link "Token" [ref=f5e13] [cursor=pointer]:
+              - /url: /hub/token
+          - listitem [ref=f5e14]:
+            - link "HPC TaskMaster" [ref=f5e15] [cursor=pointer]:
+              - /url: https://lk.hpc.hse.ru
+          - listitem [ref=f5e16]:
+            - link "Отдел суперкомпьютерного моделирования НИУ ВШЭ" [ref=f5e17] [cursor=pointer]:
+              - /url: https://hpc.hse.ru
+        - list [ref=f5e18]:
+          - listitem [ref=f5e19]:
+            - generic [ref=f5e20]:
+              - paragraph [ref=f5e21]: aoshavrina
+              - button "Logout" [ref=f5e22] [cursor=pointer]:
+                - generic [aria-hidden] [ref=f5e23]: 
+                - text: Logout
+  - generic [ref=f5e24]:
+    - generic [ref=f5e26]:
+      - paragraph [ref=f5e27]: Задача добавлена в очередь.
+      - paragraph [ref=f5e28]: Вы будете автоматически перенаправлены, когда ноутбук будет запущен.
+      - paragraph [ref=f5e29]: В зависимости от загрузки суперкомпьютера, запуск ноутбука может занять некоторое время.
+      - generic [ref=f5e30]:
+        - progressbar:
+          - generic [ref=f5e31]: 0% Complete
+      - paragraph [ref=f5e32]: Задача №4359778 ожидает запуска в очереди...
+      - paragraph [ref=f5e33]:
+        - button "Отменить запуск" [ref=f5e34] [cursor=pointer]
+    - generic [ref=f5e37]:
+      - text: "Требуемые ресурсы заняты. Ожидаемое время запуска: вычисляется. Варианты: 1. Дождаться указанного времени. 2. Выбрать минимальный объем ресурсов, который достаточен для вашей задачи. 3. Указать короткий временной лимит, чтобы у задачи повысился приоритет. 4. Использовать очередь test для отладочных запусков. 5."
+      - link "Конвертировать" [ref=f5e38] [cursor=pointer]:
+        - /url: https://hpc.hse.ru/instructions/convertipynb
+      - text: отлаженный Jupyter-ноутбук в python-файл и запускать его через очередь задач.
+    - group [ref=f5e41]:
+      - generic "Журнал событий" [ref=f5e42]

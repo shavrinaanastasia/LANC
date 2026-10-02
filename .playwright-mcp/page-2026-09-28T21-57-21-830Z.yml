@@ -1,0 +1,23 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - heading "Авторизация" [level=1] [ref=e5]
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - generic [ref=e8]: Имя пользователя или e-mail
+        - textbox [ref=e10]
+      - generic [ref=e11]:
+        - generic [ref=e12]: Пароль
+        - generic [ref=e13]:
+          - textbox [ref=e14]
+          - button "Показать пароль" [ref=e15] [cursor=pointer]:
+            - button [ref=e16]
+      - button "Войти" [ref=e22] [cursor=pointer]
+    - paragraph [ref=e23]:
+      - link "Зарегистрироваться" [ref=e24] [cursor=pointer]:
+        - /url: https://lk.hse.ru/registration
+      - link "Восстановить пароль" [ref=e26] [cursor=pointer]:
+        - /url: https://lk.hse.ru/password_recovery
+  - paragraph [ref=e28]:
+    - text: "Если у Вас возникли технические сложности, свяжитесь с нами по email:"
+    - link "digital@hse.ru" [ref=e29] [cursor=pointer]:
+      - /url: mailto:digital@hse.ru

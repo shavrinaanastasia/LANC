@@ -35,3 +35,7 @@ Current Colab runtimes use Python 3.13, while the repository's locked local depe
 ## 2026-09-26: Separate remainder run from unit 26
 
 The initial long-dialogue run saved 25 immutable records before GPU access became unavailable. One record, global unit 13 (`competition`, `E05`, seed `1103`), has status `incomplete` after reaching the 800-turn safety limit and is retained without deletion. A new account may generate global units 26-216 under a distinct `run_id` with `--start-unit-index 26`. This is a separate remainder run with 191 records, not a hash-verified resume of the original 216-unit run. Any later combined dataset must retain source-run provenance, preserve the incomplete unit 13, and be reported as a split-run exploratory extension.
+
+## 2026-09-29: War and Peace source edition
+
+The exploratory single-novel adaptation uses the user-provided Russian plain-text file `Война и мир.txt`, SHA-256 `14935bc6b407949ed8d375ee6e725370ed55ed3233205c20e7a2ac17c9e373c2`, downloaded from `https://librabook.lat/download/voyna-i-mir/`. The source site's edition and license terms were not independently verified. The protocol is a chapter-as-document adaptation, not a replication of Gromov et al.'s 6,429-text Russian literature corpus.

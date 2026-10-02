@@ -1,0 +1,202 @@
+- generic:
+  - generic [ref=f3e1]:
+    - banner [ref=f3e2]:
+      - link "Skip to left side bar" [ref=f3e4] [cursor=pointer]:
+        - /url: "#"
+      - img [ref=f3e6]: ">"
+      - navigation "main" [ref=f3e15]:
+        - menubar [ref=f3e17]:
+          - menuitem "File" [ref=f3e18]
+          - menuitem "Edit" [ref=f3e20]
+          - menuitem "View" [ref=f3e22]
+          - menuitem "Run" [ref=f3e24]
+          - menuitem "Kernel" [ref=f3e26]
+          - menuitem "Tabs" [ref=f3e28]
+          - menuitem "Settings" [ref=f3e30]
+          - menuitem "Help" [ref=f3e32]
+    - generic [ref=f3e34]:
+      - complementary "main sidebar" [ref=f3e35]:
+        - tablist "main sidebar" [ref=f3e36]:
+          - tab "File Browser (Ctrl+Shift+F)" [selected] [ref=f3e37]
+          - tab "Running Terminals and Kernels" [ref=f3e41]
+          - tab "Table of Contents" [ref=f3e46]
+          - tab "Softwares" [ref=f3e51]
+          - tab "Extension Manager" [ref=f3e53]
+      - generic [ref=f3e59]:
+        - region "File Browser Section" [ref=f3e61]:
+          - navigation "file browser" [ref=f3e62]:
+            - button "New Launcher (Ctrl+Shift+L)" [ref=f3e64] [cursor=pointer]
+            - button "New Folder" [ref=f3e71] [cursor=pointer]
+            - button "Upload Files" [ref=f3e78] [cursor=pointer]
+            - button "Refresh the file browser." [ref=f3e85] [cursor=pointer]
+          - textbox "Filter files by name" [ref=f3e93]
+          - generic [ref=f3e100]:
+            - generic "/home/aoshavrina" [ref=f3e101]:
+              - img [ref=f3e102] [cursor=pointer]
+            - text: /
+          - generic [ref=f3e104]:
+            - generic [ref=f3e105]:
+              - generic [ref=f3e106]: Name
+              - generic [ref=f3e110]: Last Modified
+            - list [ref=f3e111]:
+              - 'listitem "Name: jupyterhub_slurm Created: 2026-09-29 01:07:32 Modified: 2026-09-29 01:07:32 Writable: true" [ref=f3e112]':
+                - generic [ref=f3e116]: jupyterhub_slurm
+                - generic "Sep 29, 2026 1:07 AM" [ref=f3e117]: 14 hours ago
+              - 'listitem "Name: jupyter_4359778.log Size: 129.5 KB Created: 2026-09-29 02:03:23 Modified: 2026-09-29 02:03:23 Writable: true" [ref=f3e118]':
+                - generic [ref=f3e122]: jupyter_4359778.log
+                - generic "Sep 29, 2026 2:03 AM" [ref=f3e123]: 13 hours ago
+              - 'listitem "Name: jupyter_4359908.log Size: 243.6 KB Created: 2026-09-29 02:46:56 Modified: 2026-09-29 02:46:56 Writable: true" [ref=f3e124]':
+                - generic [ref=f3e128]: jupyter_4359908.log
+                - generic "Sep 29, 2026 2:46 AM" [ref=f3e129]: 12 hours ago
+              - 'listitem "Name: jupyter_4361983.log Size: 25.1 KB Created: 2026-09-29 15:10:44 Modified: 2026-09-29 15:10:44 Writable: true" [ref=f3e474]':
+                - generic [ref=f3e134]: jupyter_4361983.log
+                - generic "Sep 29, 2026 3:10 PM" [ref=f3e473]: seconds ago
+              - 'listitem "Name: schweinhart_controls.py Size: 5.6 KB Created: 2026-09-29 02:20:40 Modified: 2026-09-29 02:20:40 Writable: true" [ref=f3e136]':
+                - generic [ref=f3e142]: schweinhart_controls.py
+                - generic "Sep 29, 2026 2:20 AM" [ref=f3e143]: 13 hours ago
+              - 'listitem "Name: schweinhart_hpc_standalone.ipynb Size: 7.7 KB Created: 2026-09-29 02:31:30 Modified: 2026-09-29 02:31:30 Writable: true" [ref=f3e144]':
+                - generic [ref=f3e150]: schweinhart_hpc_standalone.ipynb
+                - generic "Sep 29, 2026 2:31 AM" [ref=f3e151]: 13 hours ago
+              - 'listitem "Name: schweinhart_hpc_synthetic_controls.ipynb Size: 5.3 KB Created: 2026-09-29 02:18:18 Modified: 2026-09-29 02:18:18 Writable: true Kernel: Google Colab Analog 2025 (PyTorch 2.6.0 + TensorFlow 2.19) [python-google_colab_gpu_2025]" [ref=f3e152]':
+                - generic [ref=f3e153]: ●
+                - generic [ref=f3e158]: schweinhart_hpc_synthetic_controls.ipynb
+                - generic "Sep 29, 2026 2:18 AM" [ref=f3e159]: 13 hours ago
+              - 'listitem "Name: schweinhart_synthetic_controls.ipynb Size: 11.6 KB Created: 2026-09-29 01:41:54 Modified: 2026-09-29 01:41:54 Writable: true Kernel: Google Colab Analog 2025 (PyTorch 2.6.0 + TensorFlow 2.19) [python-google_colab_gpu_2025]" [ref=f3e160]':
+                - generic [ref=f3e161]: ●
+                - generic [ref=f3e166]: schweinhart_synthetic_controls.ipynb
+                - generic "Sep 29, 2026 1:41 AM" [ref=f3e167]: 13 hours ago
+              - 'listitem "Name: war_and_peace_schweinhart_draft.ipynb Size: 7.5 KB Created: 2026-09-29 02:44:15 Modified: 2026-09-29 02:44:15 Writable: true" [ref=f3e168]':
+                - generic [ref=f3e174]: war_and_peace_schweinhart_draft.ipynb
+                - generic "Sep 29, 2026 2:44 AM" [ref=f3e175]: 12 hours ago
+        - main [ref=f3e177]:
+          - generic [ref=f3e373]:
+            - tablist [ref=f3e374]:
+              - tab "schweinhart_synthetic_controls.ipynb" [ref=f3e375]
+              - tab "schweinhart_hpc_synthetic_controls.ipynb" [ref=f3e390]
+              - tab "war_and_peace_schweinhart_draft.ipynb" [selected] [ref=f3e475]
+              - tab "aoshavrina@cn-034:~" [ref=f3e405]
+            - generic "New Launcher" [ref=f3e419]
+          - tabpanel [ref=f3e490]:
+            - navigation "notebook actions" [ref=f3e491]:
+              - button "Save and create checkpoint (Ctrl+S)" [ref=f3e493] [cursor=pointer]
+              - button "Insert a cell below (B)" [ref=f3e500] [cursor=pointer]
+              - button "Cut the selected cells (X)" [ref=f3e507] [cursor=pointer]
+              - button "Copy the selected cells (C)" [ref=f3e514] [cursor=pointer]
+              - button "Paste cells from the clipboard (V)" [ref=f3e521] [cursor=pointer]
+              - button "Run the selected cells and advance (Shift+Enter)" [ref=f3e528] [cursor=pointer]
+              - button "Interrupt the kernel (I)" [ref=f3e535] [cursor=pointer]
+              - button "Restart the kernel (0)" [ref=f3e543] [cursor=pointer]
+              - button "Restart Kernel and Run All Cells…" [ref=f3e550] [cursor=pointer]
+              - combobox "Cell type" [ref=f3e558]:
+                - option "-"
+                - option "Code"
+                - option "Markdown" [selected]
+                - option "Raw"
+              - button "No Kernel" [ref=f3e561] [cursor=pointer]
+              - generic [ref=f3e563]:
+                - button [disabled]
+              - progressbar [ref=f3e566]
+            - region "notebook content" [ref=f3e569]:
+              - generic [ref=f3e574]:
+                - button [ref=f3e576] [cursor=pointer]
+                - generic [ref=f3e577]:
+                  - 'heading "Draft: War and Peace Schweinhart Experiment" [level=1] [ref=f3e578]'
+                  - paragraph [ref=f3e579]:
+                    - text: This notebook is deliberately
+                    - strong [ref=f3e580]: not submitted or executed
+                    - text: ". It specifies a chapter-as-document adaptation of Gromov, Borodin, and Yerbolova (2024). It cannot be called an exact reproduction: their Russian result uses 6,429 literary texts, unpublished source manifest, unpublished stop-word list, preprocessing details, random samples, and sample-size ladder."
+                  - paragraph [ref=f3e581]:
+                    - text: "Question for this adaptation: what Schweinhart MST-growth estimates arise from unique Russian word and bigram embeddings derived from one fixed public-domain edition of"
+                    - emphasis [ref=f3e582]: War and Peace
+                    - text: ", when its chapters are treated as documents?"
+              - generic [ref=f3e589]:
+                - heading "Required input before any run" [level=2] [ref=f3e590]
+                - paragraph [ref=f3e591]: Upload two files to the HSE working directory. Do not run the later cells until their edition/source is recorded.
+                - code [ref=f3e593]: war_and_peace_ru.txt UTF-8 Russian public-domain text war_and_peace_metadata.json
+                - paragraph [ref=f3e594]: "The metadata file must contain at least: title, author, language, source URL, retrieval date, edition/transcription description, license or public-domain status, and SHA-256 of the text file."
+              - generic [ref=f3e599]:
+                - generic [ref=f3e600]: "[ ]:"
+                - generic [ref=f3e602]:
+                  - textbox [ref=f3e603]
+                  - generic [ref=f3e606]: from pathlib import Path import hashlib import json TEXT_PATH = Path('war_and_peace_ru.txt') METADATA_PATH = Path('war_and_peace_metadata.json') assert TEXT_PATH.exists(), 'Upload the chosen Russian text edition first.' assert METADATA_PATH.exists(), 'Upload source/edition metadata first.' text = TEXT_PATH.read_text(encoding='utf-8') metadata = json.loads(METADATA_PATH.read_text(encoding='utf-8')) text_sha256 = hashlib.sha256(TEXT_PATH.read_bytes()).hexdigest() assert metadata['sha256'] == text_sha256, 'Metadata hash does not match the uploaded text.' print('Characters:', len(text)) print('SHA-256:', text_sha256) print('Source:', metadata['source_url'])
+              - generic [ref=f3e616]:
+                - 'heading "Chapter segmentation: inspect before accepting" [level=2] [ref=f3e617]'
+                - paragraph [ref=f3e618]: "Gromov et al. use a word-by-text matrix. With one novel, chapters are an adaptation that supply document columns. The regular expression is only a first pass: inspect counts and headings before accepting it. Any manual correction must be recorded as a new immutable text segmentation artifact."
+              - generic [ref=f3e623]:
+                - generic [ref=f3e624]: "[ ]:"
+                - generic [ref=f3e626]:
+                  - textbox [ref=f3e627]
+                  - generic [ref=f3e630]: "import re CHAPTER = re.compile(r'(?im)^\\s*глава\\s+[ivxlcdm]+\\.?\\s*$') matches = list(CHAPTER.finditer(text)) print('Detected chapter headings:', len(matches)) print('First headings:', [match.group(0) for match in matches[:10]]) chapters = [ text[start.end(): end.start()].strip() for start, end in zip(matches, [*matches[1:], None]) ] chapters = [chapter for chapter in chapters if chapter] print('Non-empty chapter documents:', len(chapters)) assert len(chapters) >= 100, 'Stop: heading pattern or source edition must be corrected before analysis.'"
+              - generic [ref=f3e640]:
+                - heading "Preprocessing specification" [level=2] [ref=f3e641]
+                - paragraph [ref=f3e642]: The paper states Russian preprocessing with Natasha, stop-word removal, tokenisation/class labels, and lemmatisation, but does not release exact settings. The cells below are a draft specification only. Before execution, lock the exact Natasha version, stop-word source, class-replacement rules, and text segmentation hash.
+                - paragraph [ref=f3e643]: No estimate from this notebook may be described as Gromov et al.'s Russian-language number.
+              - generic [ref=f3e648]:
+                - generic [ref=f3e649]: "[ ]:"
+                - generic [ref=f3e651]:
+                  - textbox [ref=f3e652]
+                  - generic [ref=f3e653]: "# Draft only: do not run before locking preprocessing dependencies and rules. # from natasha import Doc, MorphVocab, NewsEmbedding, NewsMorphTagger, Segmenter # segmenter = Segmenter() # morph_vocab = MorphVocab() # morph_tagger = NewsMorphTagger(NewsEmbedding()) # # def lemmatize_chapter(chapter: str) -> list[str]: # doc = Doc(chapter) # doc.segment(segmenter) # doc.tag_morph(morph_tagger) # lemmas = [] # for token in doc.tokens: # token.lemmatize(morph_vocab) # if token.lemma and re.fullmatch(r'[а-яё]+', token.lemma): # lemmas.append(token.lemma) # return lemmas"
+              - generic [ref=f3e663]:
+                - heading "Gromov-style weighted SVD representation" [level=2] [ref=f3e664]
+                - paragraph [ref=f3e665]:
+                  - text: For each term i and chapter j, construct the paper's entropy-weighted within-document frequency matrix. Perform SVD
+                  - code [ref=f3e666]: W = U Sigma V^T
+                  - text: ; the word embedding is a row of
+                  - code [ref=f3e667]: U
+                  - text: ", not"
+                  - code [ref=f3e668]: U Sigma
+                  - text: . For bigrams, concatenate the two constituent word embeddings. Use dimensions 5, 10, and 15.
+                - paragraph [ref=f3e669]: This is shown for review only. It is not run in this notebook.
+              - generic [ref=f3e674]:
+                - generic [ref=f3e675]: "[ ]:"
+                - generic [ref=f3e677]:
+                  - textbox [ref=f3e678]
+                  - generic [ref=f3e681]: "# Draft pseudocode, intentionally not executable until preprocessing is locked. # from collections import Counter # from scipy.sparse import csc_matrix # from sklearn.utils.extmath import randomized_svd # # documents = [lemmatize_chapter(chapter) for chapter in chapters] # vocabulary = sorted({lemma for document in documents for lemma in document}) # Build W[i, j] = (1 - normalized_entropy_i) * count(i, j) / chapter_length_j. # U, singular_values, Vt = randomized_svd(W, n_components=15, random_state=0) # word_embeddings_d = U[:, :d] # bigram_embedding_d = concatenate(word_embeddings_d[left], word_embeddings_d[right])"
+              - generic [ref=f3e691]:
+                - heading "Schweinhart preflight and proposed batch job" [level=2] [ref=f3e692]
+                - paragraph [ref=f3e693]: The synthetic estimator uses exact Delaunay MST and intentionally supports only 2D/3D controls. Word and bigram embeddings at dimensions 5/10/15 require a separately validated high-dimensional Euclidean MST implementation. Gromov et al. do not disclose that implementation.
+                - paragraph [ref=f3e694]: Therefore do not submit an MST job yet. First validate the high-dimensional algorithm on known synthetic 5D/10D/15D shapes and decide whether the result is exact or approximate.
+              - generic [ref=f3e699]:
+                - generic [ref=f3e700]: "[ ]:"
+                - generic [ref=f3e702]:
+                  - textbox [ref=f3e703]
+                  - generic [ref=f3e706]: "def dense_distance_gib(n: int, bytes_per_distance: int = 8) -> float: return n * n * bytes_per_distance / 2**30 for n in (10_000, 50_000, 100_000): print(f'{n:,} points: dense float64 distance matrix ~= {dense_distance_gib(n):.1f} GiB') print('NO SBATCH SUBMISSION: high-dimensional MST method and corpus preprocessing remain unapproved.')"
+      - complementary "alternate sidebar" [ref=f3e423]:
+        - tablist "alternate sidebar" [ref=f3e424]:
+          - tab "Property Inspector" [ref=f3e425]
+          - tab [ref=f3e431]
+    - contentinfo [ref=f3e436]:
+      - generic [ref=f3e437]:
+        - generic [ref=f3e438]:
+          - switch "Simple" [ref=f3e440]:
+            - generic "Simple Interface (Ctrl+Shift+D)" [ref=f3e441]: Simple
+            - generic [aria-hidden] [ref=f3e442] [cursor=pointer]
+          - generic [ref=f3e444]:
+            - generic [ref=f3e445]: "1"
+            - generic [ref=f3e453]: "2"
+          - generic [ref=f3e460]: No Kernel | Initializing
+        - generic [ref=f3e461]:
+          - generic [ref=f3e462]: war_and_peace_schweinhart_draft.ipynb
+          - generic [ref=f3e463]: Ln 1, Col 1
+          - 'generic "Notebook not trusted: 0 of 11 cells trusted." [ref=f3e710]'
+          - generic "Notebook is in Command mode" [ref=f3e471]: "Mode: Command"
+  - generic [ref=f3e717]:
+    - generic [ref=f3e718]: Select Kernel
+    - generic [ref=f3e719]:
+      - generic [ref=f3e720]: "Select kernel for: \"war_and_peace_schweinhart_draft.ipynb\""
+      - combobox [ref=f3e722]:
+        - option "AIDAO 2025 [python-olymp_2025]" [selected]
+        - option "Google Colab Analog 2024 (PyTorch 2.5.1 + TensorFlow 2.18) [python-google_colab_gpu_2024]"
+        - option "Google Colab Analog 2025 (PyTorch 2.6.0 + TensorFlow 2.19) [python-google_colab_gpu_2025]"
+        - option "ML-Agents [python-mlagents]"
+        - option "PyTorch 2.1 + TenforFlow 2.14 [python-olymp_v1]"
+        - option "PyTorch 2.2.1 CUDA 11.8 [python-lingvo]"
+        - option "PyTorch 2.4 CUDA 12.4 [python-pytorch2_4]"
+        - option "Smilei 5.1 [python-smilei5_1]"
+        - option "No Kernel"
+        - option "R 4.3.2 [python-olymp_v1]"
+        - option "schweinhart_hpc_synthetic_controls.ipynb"
+        - option "schweinhart_synthetic_controls.ipynb"
+    - generic [ref=f3e723]:
+      - button "No Kernel" [ref=f3e724]
+      - button "Select" [active] [ref=f3e726]

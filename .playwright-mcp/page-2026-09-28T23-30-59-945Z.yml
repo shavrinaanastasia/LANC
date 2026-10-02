@@ -1,0 +1,145 @@
+- generic [ref=f3e1]:
+  - banner [ref=f3e2]:
+    - link "Skip to left side bar" [ref=f3e4] [cursor=pointer]:
+      - /url: "#"
+    - img [ref=f3e6]: ">"
+    - navigation "main" [ref=f3e15]:
+      - menubar [ref=f3e17]:
+        - menuitem "File" [ref=f3e18]
+        - menuitem "Edit" [ref=f3e20]
+        - menuitem "View" [ref=f3e22]
+        - menuitem "Run" [ref=f3e24]
+        - menuitem "Kernel" [ref=f3e26]
+        - menuitem "Tabs" [ref=f3e28]
+        - menuitem "Settings" [ref=f3e30]
+        - menuitem "Help" [ref=f3e32]
+  - generic [ref=f3e34]:
+    - complementary "main sidebar" [ref=f3e35]:
+      - tablist "main sidebar" [ref=f3e36]:
+        - tab "File Browser (Ctrl+Shift+F)" [selected] [ref=f3e37]
+        - tab "Running Terminals and Kernels" [ref=f3e41]
+        - tab "Table of Contents" [ref=f3e46]
+        - tab "Softwares" [ref=f3e51]
+        - tab "Extension Manager" [ref=f3e53]
+    - generic [ref=f3e59]:
+      - region "File Browser Section" [ref=f3e61]:
+        - navigation "file browser" [ref=f3e62]:
+          - button "New Launcher (Ctrl+Shift+L)" [ref=f3e64] [cursor=pointer]
+          - button "New Folder" [ref=f3e71] [cursor=pointer]
+          - button "Upload Files" [ref=f3e78] [cursor=pointer]
+          - button "Refresh the file browser." [ref=f3e85] [cursor=pointer]
+        - textbox "Filter files by name" [ref=f3e93]
+        - generic [ref=f3e100]:
+          - generic "/home/aoshavrina" [ref=f3e101]:
+            - img [ref=f3e102] [cursor=pointer]
+          - text: /
+        - generic [ref=f3e104]:
+          - generic [ref=f3e105]:
+            - generic [ref=f3e106]: Name
+            - generic [ref=f3e110]: Last Modified
+          - list [ref=f3e111]:
+            - 'listitem "Name: jupyterhub_slurm Created: 2026-09-29 01:07:32 Modified: 2026-09-29 01:07:32 Writable: true" [ref=f3e112]':
+              - generic [ref=f3e116]: jupyterhub_slurm
+              - generic "Sep 29, 2026 1:07 AM" [ref=f3e117]: an hour ago
+            - 'listitem "Name: jupyter_4359778.log Size: 129.5 KB Created: 2026-09-29 02:03:23 Modified: 2026-09-29 02:03:23 Writable: true" [ref=f3e118]':
+              - generic [ref=f3e122]: jupyter_4359778.log
+              - generic "Sep 29, 2026 2:03 AM" [ref=f3e123]: 27 minutes ago
+            - 'listitem "Name: jupyter_4359908.log Size: 130 KB Created: 2026-09-29 02:30:51 Modified: 2026-09-29 02:30:51 Writable: true" [ref=f3e684]':
+              - generic [ref=f3e128]: jupyter_4359908.log
+              - generic "Sep 29, 2026 2:30 AM" [ref=f3e685]: seconds ago
+            - 'listitem "Name: schweinhart_controls.py Size: 5.6 KB Created: 2026-09-29 02:20:40 Modified: 2026-09-29 02:20:40 Writable: true" [ref=f3e371]':
+              - generic [ref=f3e136]: schweinhart_controls.py
+              - generic "Sep 29, 2026 2:20 AM" [ref=f3e376]: 10 minutes ago
+            - 'listitem "Name: schweinhart_hpc_standalone.ipynb Size: 3.7 KB Created: 2026-09-29 02:27:30 Modified: 2026-09-29 02:27:30 Writable: true Kernel: Google Colab Analog 2025 (PyTorch 2.6.0 + TensorFlow 2.19) [python-google_colab_gpu_2025]" [ref=f3e616]':
+              - generic [ref=f3e139]: ●
+              - generic [ref=f3e144]: schweinhart_hpc_standalone.ipynb
+              - generic "Sep 29, 2026 2:27 AM" [ref=f3e617]: 3 minutes ago
+            - 'listitem "Name: schweinhart_hpc_synthetic_controls.ipynb Size: 5.3 KB Created: 2026-09-29 02:18:18 Modified: 2026-09-29 02:18:18 Writable: true" [ref=f3e379]':
+              - generic [ref=f3e385]: schweinhart_hpc_synthetic_controls.ipynb
+              - generic "Sep 29, 2026 2:18 AM" [ref=f3e386]: 13 minutes ago
+            - 'listitem "Name: schweinhart_synthetic_controls.ipynb Size: 11.6 KB Created: 2026-09-29 01:41:54 Modified: 2026-09-29 01:41:54 Writable: true" [ref=f3e387]':
+              - generic [ref=f3e393]: schweinhart_synthetic_controls.ipynb
+              - generic "Sep 29, 2026 1:41 AM" [ref=f3e394]: an hour ago
+      - main [ref=f3e147]:
+        - generic [ref=f3e148]:
+          - tablist [ref=f3e149]:
+            - tab "Launcher" [ref=f3e150]
+            - tab "schweinhart_hpc_standalone.ipynb" [selected] [ref=f3e409]
+          - generic "New Launcher" [ref=f3e155]
+        - tabpanel "schweinhart_hpc_standalone.ipynb" [ref=f3e424]:
+          - navigation "notebook actions" [ref=f3e425]:
+            - button "Save and create checkpoint (Ctrl+S)" [ref=f3e427] [cursor=pointer]
+            - button "Insert a cell below (B)" [ref=f3e434] [cursor=pointer]
+            - button "Cut the selected cells (X)" [ref=f3e441] [cursor=pointer]
+            - button "Copy the selected cells (C)" [ref=f3e448] [cursor=pointer]
+            - button "Paste cells from the clipboard (V)" [ref=f3e455] [cursor=pointer]
+            - button "Run the selected cells and advance (Shift+Enter)" [ref=f3e462] [cursor=pointer]
+            - button "Interrupt the kernel (I)" [ref=f3e469] [cursor=pointer]
+            - button "Restart the kernel (0)" [ref=f3e477] [cursor=pointer]
+            - button "Restart Kernel and Run All Cells…" [ref=f3e484] [cursor=pointer]
+            - combobox "Cell type" [ref=f3e492]:
+              - option "-"
+              - option "Code" [selected]
+              - option "Markdown"
+              - option "Raw"
+            - button "Enable Debugger" [ref=f3e686] [cursor=pointer]
+            - button "Google Colab Analog 2025 (PyTorch 2.6.0 + TensorFlow 2.19) [python-google_colab_gpu_2025]" [ref=f3e609] [cursor=pointer]
+            - generic [ref=f3e497]:
+              - button [disabled]
+            - progressbar [ref=f3e687]
+          - region "notebook content" [active] [ref=f3e503]:
+            - generic [ref=f3e511]:
+              - 'heading "HSE HPC: Standalone Schweinhart Synthetic Validation" [level=1] [ref=f3e512]'
+              - paragraph [ref=f3e513]:
+                - text: This notebook imports the uploaded
+                - code [ref=f3e514]: schweinhart_controls.py
+                - text: ", which is the exact source file from this repository. It avoids Git and pip bootstrap on the short HSE test allocation."
+            - generic [ref=f3e515]:
+              - generic [ref=f3e519]:
+                - generic [ref=f3e520]: "[1]:"
+                - generic [ref=f3e522]:
+                  - textbox [ref=f3e523]
+                  - generic [ref=f3e526]: from pathlib import Path import os import sys HOME = Path.cwd() assert (HOME / 'schweinhart_controls.py').exists(), 'Upload schweinhart_controls.py beside this notebook.' sys.path.insert(0, str(HOME)) import numpy as np import scipy from schweinhart_controls import KNOWN_DIMENSIONS, run_schweinhart_controls print('Working directory:', HOME) print('CPU count:', os.cpu_count()) print('NumPy:', np.__version__, '| SciPy:', scipy.__version__)
+              - generic [ref=f3e691]: "Working directory: /home/aoshavrina CPU count: 44 NumPy: 2.0.2 | SciPy: 1.16.1"
+            - generic [ref=f3e534]:
+              - generic [ref=f3e535]: "[*]:"
+              - generic [ref=f3e537]:
+                - textbox [ref=f3e538]
+                - generic [ref=f3e539]: POINTS = 100_000 SAMPLE_SIZES = [10_000, 20_000, 40_000, 60_000, 80_000, 100_000] ALPHAS = list(range(1, 11)) SEED = 20260926 controls = run_schweinhart_controls(POINTS, SAMPLE_SIZES, ALPHAS, SEED) print('Completed deterministic 100,000-point synthetic controls.')
+            - generic [ref=f3e547]:
+              - generic [ref=f3e548]: "[*]:"
+              - generic [ref=f3e550]:
+                - textbox [ref=f3e551]
+                - generic [ref=f3e554]: "import pandas as pd rows = [] for shape, result in controls.items(): for estimate in result['alpha_estimates']: value = estimate['dimension'] rows.append({ 'shape': shape, 'known_dimension': result['known_dimension'], 'alpha': estimate['alpha'], 'estimated_dimension': value, 'ape_percent': abs(value - result['known_dimension']) / result['known_dimension'] * 100, 'r_squared': estimate['r_squared'], 'ci_95': estimate['dimension_ci_95'], }) table = pd.DataFrame(rows) summary = table.groupby('shape', sort=False).agg( known_dimension=('known_dimension', 'first'), estimate_min=('estimated_dimension', 'min'), estimate_max=('estimated_dimension', 'max'), best_ape_percent=('ape_percent', 'min'), mean_ape_percent=('ape_percent', 'mean'), min_r_squared=('r_squared', 'min'), ) summary"
+            - generic [ref=f3e558]:
+              - generic [ref=f3e640]:
+                - button "Copy the selected cells and paste them below the selection" [ref=f3e642] [cursor=pointer]
+                - button "Move Cells Up" [ref=f3e649] [cursor=pointer]
+                - button "Move Cells Down" [ref=f3e655] [cursor=pointer]
+                - button "Insert Cell Above (A)" [ref=f3e661] [cursor=pointer]
+                - button "Insert a cell below (B)" [ref=f3e669] [cursor=pointer]
+                - button "Delete Cells (D)" [ref=f3e677] [cursor=pointer]
+              - generic [ref=f3e562]:
+                - generic [ref=f3e563]: "[*]:"
+                - generic [ref=f3e565]:
+                  - textbox [ref=f3e566]
+                  - generic [ref=f3e569]: "assert set(controls) == set(KNOWN_DIMENSIONS) assert table['estimated_dimension'].notna().all() assert table['ci_95'].notna().all() assert (summary['best_ape_percent'] < 5).all() print('PASS: all four known shapes recover a dimension within 5% at at least one alpha.')"
+    - complementary "alternate sidebar" [ref=f3e326]:
+      - tablist "alternate sidebar" [ref=f3e327]:
+        - tab "Property Inspector" [ref=f3e328]
+        - tab [ref=f3e334]
+  - contentinfo [ref=f3e339]:
+    - generic [ref=f3e340]:
+      - generic [ref=f3e341]:
+        - switch "Simple" [ref=f3e343]:
+          - generic "Simple Interface (Ctrl+Shift+D)" [ref=f3e344]: Simple
+          - generic [aria-hidden] [ref=f3e345] [cursor=pointer]
+        - generic [ref=f3e347]:
+          - generic [ref=f3e348]: "0"
+          - generic [ref=f3e356]: "1"
+        - generic [ref=f3e573]: Google Colab Analog 2025 (PyTorch 2.6.0 + TensorFlow 2.19) [python-google_colab_gpu_2025] | Busy
+      - generic [ref=f3e363]:
+        - generic [ref=f3e364]: schweinhart_hpc_standalone.ipynb
+        - generic [ref=f3e574]: Ln 1, Col 1
+        - 'generic "Notebook not trusted: 4 of 5 cells trusted." [ref=f3e683]'
+        - generic "Notebook is in Command mode" [ref=f3e582]: "Mode: Command"

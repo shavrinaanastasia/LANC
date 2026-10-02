@@ -1,0 +1,56 @@
+lemmatising (natasha)...
+  lemmatised 50/361 chapters
+  lemmatised 100/361 chapters
+  lemmatised 150/361 chapters
+  lemmatised 200/361 chapters
+  lemmatised 250/361 chapters
+  lemmatised 300/361 chapters
+  lemmatised 350/361 chapters
+vocabulary 17900, bigrams 152568 -- identical to SVD run
+lemma sentences saved to wap_sentences.json.gz (CBOW is trained on HSE)
+ruBERT...
+Some weights of the model checkpoint at DeepPavlov/rubert-base-cased were not used when initializing BertModel: ['cls.predictions.bias', 'cls.predictions.decoder.bias', 'cls.predictions.decoder.weight', 'cls.predictions.transform.LayerNorm.bias', 'cls.predictions.transform.LayerNorm.weight', 'cls.predictions.transform.dense.bias', 'cls.predictions.transform.dense.weight', 'cls.seq_relationship.bias', 'cls.seq_relationship.weight']
+- This IS expected if you are initializing BertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+  1723 BERT windows
+  BERT 8/1723 windows, 0.4 min, eta 82.1 min
+  BERT 208/1723 windows, 7.9 min, eta 57.7 min
+  BERT 408/1723 windows, 15.1 min, eta 48.8 min
+  BERT 608/1723 windows, 22.5 min, eta 41.3 min
+  BERT 808/1723 windows, 29.9 min, eta 33.9 min
+  BERT 1008/1723 windows, 37.4 min, eta 26.5 min
+  BERT 1208/1723 windows, 45.4 min, eta 19.3 min
+  BERT 1408/1723 windows, 53.2 min, eta 11.9 min
+  BERT 1608/1723 windows, 60.1 min, eta 4.3 min
+  unmatched occurrences re-encoded without context: 0
+{
+  "model": "DeepPavlov/rubert-base-cased",
+  "layer": "last_hidden_state",
+  "occurrences": 259934,
+  "occurrences_unmatched": 0,
+  "pca_explained_variance_ratio_top15": [
+    0.03296553012652598,
+    0.026355874994490963,
+    0.020975577821303,
+    0.019354827638284753,
+    0.01781189258814848,
+    0.015476239490475541,
+    0.015018505353614816,
+    0.014352205595100443,
+    0.014313505913496156,
+    0.013818555579974549,
+    0.013374313344643517,
+    0.012668204883678405,
+    0.011982944608438354,
+    0.01129226172973915,
+    0.010676874516002455
+  ],
+  "pca_cumulative_5_10_15": [
+    0.11746370316875317,
+    0.1904427151014147,
+    0.25043731418391657
+  ],
+  "distinct_rows": {
+    "bert768": 17900
+  }
+}
