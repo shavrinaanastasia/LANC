@@ -43,3 +43,14 @@ A fresh, complete 216-unit run `phase1-long-10000w-hse-v1` is generated on the H
 ## 2026-10-02: Short-dialogue corpus for frame-specific CBOW (exploratory)
 
 To build frame-specific CBOW spaces from a large amount of text, run `short-10turn-cbow-v1` generates many short dialogues with the unchanged MVP protocol (`generate_dialogue`, 10 turns, `configs/base.yaml` generation settings): 3 frames x the 24 evaluation cards x generation seeds 1-150 = 10,800 dialogues (~400 generated words each, ~1.4 M words per frame). The large seed set is used only to enlarge each frame's corpus; seeds are not treated as independent statistical replicates. Units are ordered seed-major so any partial run stays balanced over frames and cards; records (DialogueRecord + record_hash) are appended to per-worker shards. `dialogue_cbow.py` lemmatises with spaCy `en_core_web_sm` (PROPN/NUM placeholders, stop words and punctuation removed, only (card, seed) pairs present in all frames) and trains CBOW with the War-and-Peace settings (window 5, negative 5, 30 epochs, seed 1, d = 5/10/15), reported both with all lemmas and with `min_count = 5`. Generation runs on CPU after the long-dialogue run releases its cores. Some cluster nodes lack libsndfile; the drivers mark `soundfile` as absent before importing transformers (audio code is never used).
+
+## 2026-10-03 — Layer sweep of the nested-PCA intervention (exploratory)
+
+Requested by A. Shavrina: repeat the MVP intervention (pca_k after human layer 15) after every one of the 30
+decoder blocks. Choices (user): rank 32 only (least degenerate in the MVP), identity controls reused from the
+existing runs; long dialogues = neutral, 8 cards (E01 E02 E05 E06 E09 E13 E17 E21) x seed 1103 per layer
+(240 dialogues); short 10-turn dialogues = neutral, 24 cards x seeds 1..50 per layer (36 000) for per-layer CBOW.
+One identity calibration on the calibration stimuli (24 x seeds 1103, 2207) captures all 30 block outputs;
+MVP cap (<=128 positions per dialogue x agent, same positions for all layers); one PCA basis per layer.
+Script hse_layer_sweep.py; queued at the very end on HSE (after the short-dialogue CBOW corpus), nice 20000.
+Exploratory: layer-15 identity basis here differs from the superseded MVP basis.
