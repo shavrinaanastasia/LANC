@@ -17,9 +17,9 @@ Dimension code mirror: `experiments/dimension/code/`.
 | E3 | Estimator validation on synthetic shapes | done |
 | E4 | Long dialogues 10k words (216) | running: 140/216 on 2026-10-03 00:40 MSK |
 | E5 | Short 10-turn dialogues for frame CBOW (10 800) | queued after E4 |
-| E6 | Calibration on trajectories (Gromov proposal) | held (partly done) |
+| E6 | Calibration on trajectories (Gromov proposal) | running (released after E8) |
 | E7 | Pseudolanguage: true dimension vs estimate (SVD, CBOW) | done |
-| E8 | Pseudolanguage: small BERT from scratch | running |
+| E8 | Pseudolanguage: small BERT from scratch | done |
 | E9 | Layer sweep of pca_32 over 30 layers (short + long) | queued last |
 
 ---
@@ -83,7 +83,11 @@ the dist walk is non-local for m >= 3 (step / nearest-neighbour distance 4-8) an
 ## E8. Pseudolanguage: small BERT trained from scratch (HSE, 2026-10-03)
 Same texts as E7 (regenerated with identical seeds). BERT 4 layers x 256, 4 heads, MLM, 30 epochs (cap 240 min),
 contextual vectors averaged per word; PCA to 2/5/10/15 and full 256; words and bigrams; both walks.
-Code: `pseudo_bert.py`, `8c_pseudo_bert.sbatch`. Job 4371985 (8 tasks). Smoke: ~2.5 min per epoch on 2 CPU.
+Code: `pseudo_bert.py`, `8c_pseudo_bert.sbatch`. Job 4371985 (8 tasks, 84-124 min training each); rows `bert_pca`/`bert_full`
+in `experiments/dimension/results/pseudo_table.csv`. MLM accuracy eps 0.19-0.33; dist m >= 3 ~0.10 (nothing learnable).
+Key: mean contextual BERT vectors overestimate and do not separate m = 3/4/6 (eps, TwoNN, PCA 15: 4.5 / 8.0 / 8.9 / 7.9;
+full 256: 21 / 29 / 36 / 38); no plateau in d; PCA 15 keeps only 28-48 % of variance. Implies the War-and-Peace ruBERT
+numbers are likely overestimates. Report restructured (intro with methods, then one section per estimator + embedding).
 
 ## E9. Layer sweep of the nested-PCA intervention (HSE, queued last)
 pca_32 after each decoder block L = 1..30 (MVP used only L = 15). Per-layer bases from one identity calibration
@@ -91,5 +95,5 @@ pca_32 after each decoder block L = 1..30 (MVP used only L = 15). Per-layer base
 Short: neutral, 24 cards x seeds 1..50 per layer (36 000). Long: neutral, 8 cards x seed 1103 per layer (240).
 Identity controls reused from E5 / E4.
 Code: `hse_layer_sweep.py`, `hse_layer_calib.sbatch`, `hse_layer_short.sbatch`, `hse_layer_long.sbatch`.
-Jobs: 4372011 (calibration, after E5), 4372012 (short, after calibration); long to be submitted after E8
-(submit limit 100 jobs). All with nice 20000.
+Jobs: 4372011 (calibration, after E5), 4372012 (short, after calibration); 4372289 (long, 17 workers -- submit limit
+100 jobs; lock-file claims, so fewer workers only make it slower). All with nice 20000.
