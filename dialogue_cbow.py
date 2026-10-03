@@ -11,7 +11,7 @@ Stage 2 (env Python/Anaconda, gensim 4.3):
     python dialogue_cbow.py train [--min-count 1]
   - CBOW exactly as for War and Peace: sg=0, window 5, negative 5, 30 epochs, seed 1, workers 1, d = 5/10/15;
   - writes cbow_<frame>_mc<k>.npz with vocabulary, bigrams (unique adjacent lemma pairs inside a sentence,
-    both words in the vocabulary), word_freq, cbow5, cbow10, cbow15 -- the format read by
+    both words in the vocabulary), word_freq, cbow5 ... cbow30 -- the format read by
     ~/wap_run/wap_schweinhart.py --source cbow (words and bigrams, concatenation).
 """
 
@@ -77,7 +77,7 @@ def train(min_count):
         vocab = sorted(w for w, c in freq.items() if c >= min_count)
         index = {w: i for i, w in enumerate(vocab)}
         vecs = {}
-        for d in (5, 10, 15):
+        for d in (5, 10, 15, 20, 30):
             m = Word2Vec(sents, vector_size=d, sg=0, window=5, negative=5, min_count=min_count,
                          epochs=30, seed=1, workers=1)
             vecs[f"cbow{d}"] = np.array([m.wv[w] for w in vocab], dtype=np.float64)

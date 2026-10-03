@@ -8,16 +8,16 @@ are copied into `experiments/`.
 Paths on HSE: `~/lanc_run` (dialogue generation), `~/wap_run` (dimension estimation).
 Dimension code mirror: `experiments/dimension/code/`.
 
-## Status board (2026-10-03)
+## Status board (2026-10-03 22:40 MSK)
 
 | ID | Experiment | Status |
 |---|---|---|
 | E1 | MVP Phase 1 / Phase 2 (Colab) | done, see `reports/MVP_REPORT.md` |
 | E2 | War and Peace intrinsic dimension (SVD, CBOW, ruBERT) | done |
 | E3 | Estimator validation on synthetic shapes | done |
-| E4 | Long dialogues 10k words (216) | running: 140/216 on 2026-10-03 00:40 MSK |
-| E5 | Short 10-turn dialogues for frame CBOW (10 800) | queued after E4 |
-| E6 | Calibration on trajectories (Gromov proposal) | running (released after E8) |
+| E4 | Long dialogues 10k words (216) | done: 216/216, finalized (4369354) |
+| E5 | Short 10-turn dialogues for frame CBOW (10 800) | running: 8252/10800 at 22:31 MSK; CBOW pipeline 4373243 queued |
+| E6 | Calibration on trajectories (Gromov proposal) | 29/30 done (torus6+aco running); report v1 |
 | E7 | Pseudolanguage: true dimension vs estimate (SVD, CBOW) | done |
 | E8 | Pseudolanguage: small BERT from scratch | done |
 | E9 | Layer sweep of pca_32 over 30 layers (short + long) | queued last |
@@ -55,12 +55,15 @@ Jobs: 4367823 (CPU array, 22 -> 15 workers), 4371611 (7 extra workers), 4371989 
 Interruptions: 2026-10-02 7 workers cancelled to give cores to E7; 2026-10-03 6 workers cancelled to give
 slots to E8 (their in-progress units re-queued via lock removal).
 Status 2026-10-03 00:40 MSK: 140/216 (neutral 72, cooperation 68, competition 0). ~4.6 h per dialogue on 2 CPU.
+2026-10-03 evening: 216/216, finalize job 4369354 COMPLETED.
 
 ## E5. Short 10-turn dialogues for frame-specific CBOW (HSE, queued)
 3 frames x 24 cards x seeds 1..150 = 10 800 dialogues, MVP protocol.
 Code: `hse_short_dialogues.py` (run short-10turn-cbow-v1), `hse_short_cpu.sbatch`, then `dialogue_cbow.py`
 (lemmatize -> CBOW per frame, min_count 1 and 5) -> `~/wap_run/wap_schweinhart.py --source cbow`.
-Job: 4369353 (after E4 array 4367823).
+Job: 4369353 (after E4 array 4367823). Analysis job 4373243 (after 4369353, `hse_cbow_pipeline.sbatch`):
+export -> lemmatize -> CBOW min_count 1 and 5, d = 5/10/15/20/30 -> `experiments/dimension/code/dialogue_dims.py`
+(same four estimators as the calibration; d = 20/30 added to check the plateau criterion).
 
 ## E6. Calibration on trajectories of known dimension (Gromov proposal, HSE)
 Tori T2..T10, spheres S2..S8, Lorenz attractor (2.06); trajectories partitioned into "words" by random / k-means /
@@ -68,6 +71,14 @@ ant-colony centres; SVD and CBOW embeddings; four estimators.
 Code: `calib_trajectories.py`, `~/wap_run/9_calib_array.sbatch`. Job: 4370967 (30 tasks; tasks 0-17 ran,
 the rest held since 2026-10-03 to free slots for E8; restart-safe per cloud).
 Pilot: k-means centres form a near-regular lattice -> TwoNN ~ 8 on T2; random partition is the reference.
+Table: `experiments/dimension/results/calib_table.csv` (529 rows). Report: `experiments/dimension/reports/kalibrovka_traektorii.pdf`
+(built by `experiments/dimension/code/calib_report.py`).
+Key: CBOW + Schweinhart / TwoNN / Hidalgo plateau in d (10 -> 30) for m <= 6 and rank objects correctly, but words are
+overestimated (Schweinhart 1.2-1.9 m, TwoNN / Hidalgo 1.5-2.5 m); on bigrams CBOW + TwoNN / Hidalgo at d = 15-30 match the
+bigram reference (cell-centre bigrams) within ~10 % for m >= 4. SVD grows with d for every estimator. FisherS is wrong
+already on the reference (tori ~1.6 m, spheres ~m + 1). k-means breaks TwoNN / Hidalgo on the reference; aco ~ random.
+No plateau for T8 / T10, and 5000 centres are too few for m = 10. Open question: why the word bias is much larger than
+on the pseudolanguage (+0.2..0.9).
 
 ## E7. Pseudolanguage: true dimension vs estimate (HSE, 2026-10-02)
 Notebook "Pseudolanguage.ipynb" generalised: cube [0,1]^m minus 4 balls, m = 2, 3, 4, 6; 5000 points = words;
