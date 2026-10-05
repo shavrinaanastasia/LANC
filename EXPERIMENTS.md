@@ -20,8 +20,8 @@ Dimension code mirror: `experiments/dimension/code/`.
 | E6 | Calibration on trajectories (Gromov proposal) | done 30/30; report v2 |
 | E7 | Pseudolanguage: true dimension vs estimate (SVD, CBOW) | done |
 | E8 | Pseudolanguage: small BERT from scratch | done |
-| E10 | Calibration round 2 (Gromov 2026-10-05): d up to 100, fractals, V / trajectories, FNN-Cao blind protocol | queued 4377311 (29 tasks), first priority |
-| E9 | Layer sweep of pca_32 over 30 layers (short + long) | running: bases done, short 18849/36000 at 2026-10-05 11:00 MSK |
+| E10 | Calibration round 2 (Gromov 2026-10-05): d up to 100, fractals, V / trajectories, FNN-Cao blind protocol | 50/53 configs done (mftetra, two large part-B grids running); report v1 |
+| E9 | Layer sweep of pca_32 over 30 layers (short + long) | short 36000/36000 done 2026-10-05; long running (17 workers) |
 
 ---
 
@@ -141,3 +141,27 @@ neighbours that are far apart in the original space (> 3x / > 10x the true NN di
 FNN 0.97 / 0.24 / 0.01 for k = 1 / 2 / 3; false-in-original minimal at k = 3-4 (14 %) and rising to 37 % at k = 10 (FNF);
 small-scale slope 2.0 for all k >= 3, large-scale slope 1.6 -> 4.6 (FNF signature). Tasks 0-1 (torus2, torus4) had already
 started with the previous version: their *_fnn.json must be recomputed after they finish.
+Results v1 (2026-10-05 21:00 MSK; `results/calib2_table.csv`, `results/calib2_aux.json`, report `reports/kalibrovka_raund2.pdf`):
+- CBOW plateau persists to d = 100 for m <= 8 (T8 TwoNN 14.5 / 14.8 / 14.4 at d = 30 / 50 / 100); for m = 10-12 the plateau
+  starts only at d ~ 50 (~2m, Whitney); SVD grows with d up to 100 for every object. Bigram estimates saturate at 12-14 for m >= 8.
+- Fractals: Schweinhart on cell centres ~ D0 (gasket 1.5, carpet 1.7, sponge 2.5); TwoNN / Hidalgo ~1 (finite-resolution
+  segments). CBOW gives 3.2-4.1 for all fractals with D <= 3 (no discrimination). Multifractal centres ~ D2 rather than D0.
+- Flows recovered far better than Brownian walks: Lorenz-96 N = 10 (D_KY 6.55) CBOW bigrams 6.6-6.8.
+- Vocabulary size V matters more than corpus length: T4 CBOW words 9.2 -> 6.6 for V 1000 -> 20000.
+- FNN (Kennel) -> 0 for every object incl. Brownian; true false-neighbour share and the correlation-integral slope reveal FNF
+  (Lorenz min 14 % at k = 3-4, 43 % at k = 12; L96 N = 10 >= 60 %: FNN and FNF coexist); Cao E2 separates flows (0.02-0.25)
+  from Brownian walks (~1). k-gram clouds of cell centres saturate at D for flows, grow with k for Brownian walks.
+- Blind inverse model (log m ~ log estimate, two groups by E2 at k = 2, leave-one-object-out): median error 13-16 %, max ~40 %.
+
+## E11. Which calibration group is natural language? (2026-10-06, HSE Jupyter)
+Cao E2 / FNN / k-gram slopes (`calib2.delay_stats`) on CBOW vectors of War and Peace lemmas in book order (200-word chunks,
+1254 chunks) vs. the same chunks with words shuffled. Code `experiments/dimension/code/wap_delay.py`, output `~/wap_run/wap_delay.json`.
+- CBOW d = 15: E2(k = 2, 3, 4) = 0.996 / 0.997 / 1.017 (shuffled 1.002 / 0.995 / 0.997); slope at C = 0.01 for k = 1..8:
+  2.3 -> 12.5 (shuffled 2.0 -> 13.2); k-gram TwoNN at k = 8: 24.6 (shuffled 27.8).
+- CBOW d = 30: E2 1.012 / 0.996 / 1.025; slope 2.3 -> 12.0 (shuffled 2.0 -> 13.4).
+=> War and Peace belongs to the Brownian group (E2 ~ 1, k-gram dimension grows ~1.4 per word), indistinguishable from
+shuffled order at this resolution apart from a slightly slower k-gram growth. Not a low-dimensional deterministic flow.
+Calibration (Brownian group, CBOW d = 15 TwoNN, comparable N ~ 10k bigrams: 6.6 -> m ~ 4-5; full N = 152k: 9.3 -> ~6.5)
+-- rough, the TwoNN value depends on N.
+Short dialogues, neutral frame (quick run, d = 30): E2 = 0.92 (dedup 0.94, shuffled 1.00) -- also Brownian group, at its edge.
+Full dialogue run: job 4378690 (`dialogue_delay.py`).

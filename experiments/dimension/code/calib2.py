@@ -410,8 +410,8 @@ def run_config(obj, vocab, n_traj, dims, svd, fnn, length=1500, ladders=2, max_p
                           "seconds": time.time() - t1})
                 f.write_text(json.dumps(r))
                 sw = r["schweinhart"]
-                print(f"{tag} {emb} d={d} n={n} N={r['N']} | Schw {sw['min']}-{sw['max']} | TwoNN {r['twonn']:.2f} "
-                      f"| FisherS {r['fishers']:.2f} | Hid {np.round(r['hidalgo']['d_k'], 2).tolist()} ({r['seconds']:.0f}s)",
+                print(f"{tag} {emb} d={d} n={n} N={r['N']} | Schw {sw['min']}-{sw['max']} | TwoNN {r['twonn']} "
+                      f"| FisherS {r['fishers']} | Hid {np.round(r['hidalgo']['d_k'], 2).tolist()} ({r['seconds']:.0f}s)",
                       flush=True)
     if fnn:
         f = OUT / f"{tag}_fnn.json"
