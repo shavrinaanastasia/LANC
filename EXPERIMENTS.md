@@ -8,7 +8,7 @@ are copied into `experiments/`.
 Paths on HSE: `~/lanc_run` (dialogue generation), `~/wap_run` (dimension estimation).
 Dimension code mirror: `experiments/dimension/code/`.
 
-## Status board (2026-10-03 22:40 MSK)
+## Status board (2026-10-04 07:30 MSK)
 
 | ID | Experiment | Status |
 |---|---|---|
@@ -16,11 +16,12 @@ Dimension code mirror: `experiments/dimension/code/`.
 | E2 | War and Peace intrinsic dimension (SVD, CBOW, ruBERT) | done |
 | E3 | Estimator validation on synthetic shapes | done |
 | E4 | Long dialogues 10k words (216) | done: 216/216, finalized (4369354) |
-| E5 | Short 10-turn dialogues for frame CBOW (10 800) | running: 8252/10800 at 22:31 MSK; CBOW pipeline 4373243 queued |
-| E6 | Calibration on trajectories (Gromov proposal) | 29/30 done (torus6+aco running); report v1 |
+| E5 | Short 10-turn dialogues for frame CBOW (10 800) | done: 10800/10800, CBOW dimensions done (4373243); report v1 |
+| E6 | Calibration on trajectories (Gromov proposal) | done 30/30; report v2 |
 | E7 | Pseudolanguage: true dimension vs estimate (SVD, CBOW) | done |
 | E8 | Pseudolanguage: small BERT from scratch | done |
-| E9 | Layer sweep of pca_32 over 30 layers (short + long) | queued last |
+| E10 | Calibration round 2 (Gromov 2026-10-05): d up to 100, fractals, V / trajectories, FNN-Cao blind protocol | queued 4377311 (29 tasks), first priority |
+| E9 | Layer sweep of pca_32 over 30 layers (short + long) | running: bases done, short 18849/36000 at 2026-10-05 11:00 MSK |
 
 ---
 
@@ -64,6 +65,12 @@ Code: `hse_short_dialogues.py` (run short-10turn-cbow-v1), `hse_short_cpu.sbatch
 Job: 4369353 (after E4 array 4367823). Analysis job 4373243 (after 4369353, `hse_cbow_pipeline.sbatch`):
 export -> lemmatize -> CBOW min_count 1 and 5, d = 5/10/15/20/30 -> `experiments/dimension/code/dialogue_dims.py`
 (same four estimators as the calibration; d = 20/30 added to check the plateau criterion).
+Done 2026-10-04 01:56 MSK: 3600 dialogues per frame, ~640-700k lemma tokens and ~6000 types per frame.
+Table: `experiments/dimension/results/dialogue_dims_table.csv` (60 rows); report
+`experiments/dimension/reports/razmernost_dialogov_po_freimam.pdf` (`code/dialogue_report.py`).
+Key: frames are indistinguishable (differences <= 1-1.5, same as min_count 1 vs 5). Words: no plateau (TwoNN 4.6 -> 8.7 ->
+11 -> 13 -> 15 for d = 5..30; Schweinhart has no admissible alpha for d >= 15) -- like the dist control or m >= 8 objects.
+Bigrams: plateau (Schweinhart 7.8-10.4, Hidalgo 6-9 for d = 10..30; TwoNN 7.0 -> 9.5 slowly). FisherS uninformative.
 
 ## E6. Calibration on trajectories of known dimension (Gromov proposal, HSE)
 Tori T2..T10, spheres S2..S8, Lorenz attractor (2.06); trajectories partitioned into "words" by random / k-means /
@@ -71,7 +78,7 @@ ant-colony centres; SVD and CBOW embeddings; four estimators.
 Code: `calib_trajectories.py`, `~/wap_run/9_calib_array.sbatch`. Job: 4370967 (30 tasks; tasks 0-17 ran,
 the rest held since 2026-10-03 to free slots for E8; restart-safe per cloud).
 Pilot: k-means centres form a near-regular lattice -> TwoNN ~ 8 on T2; random partition is the reference.
-Table: `experiments/dimension/results/calib_table.csv` (529 rows). Report: `experiments/dimension/reports/kalibrovka_traektorii.pdf`
+Table: `experiments/dimension/results/calib_table.csv` (540 rows). torus6+aco hit the 2-day limit on node cn-040 (each measure 3-7 h); rerun as 4376873_22 on cn-010 finished in 15 min. Report: `experiments/dimension/reports/kalibrovka_traektorii.pdf`
 (built by `experiments/dimension/code/calib_report.py`).
 Key: CBOW + Schweinhart / TwoNN / Hidalgo plateau in d (10 -> 30) for m <= 6 and rank objects correctly, but words are
 overestimated (Schweinhart 1.2-1.9 m, TwoNN / Hidalgo 1.5-2.5 m); on bigrams CBOW + TwoNN / Hidalgo at d = 15-30 match the
@@ -107,4 +114,30 @@ Short: neutral, 24 cards x seeds 1..50 per layer (36 000). Long: neutral, 8 card
 Identity controls reused from E5 / E4.
 Code: `hse_layer_sweep.py`, `hse_layer_calib.sbatch`, `hse_layer_short.sbatch`, `hse_layer_long.sbatch`.
 Jobs: 4372011 (calibration, after E5), 4372012 (short, after calibration); 4372289 (long, 17 workers -- submit limit
-100 jobs; lock-file claims, so fewer workers only make it slower). All with nice 20000.
+100 jobs; lock-file claims, so fewer workers only make it slower). Initially nice 20000; on 2026-10-04 nice -> 0, and on 2026-10-05 `--mem=16G` removed: Slurm nodes report 1 MB of memory, so any --mem request can never be satisfied (job 4372011 had been pending for 1.5 days). Bases: 32 PCs explain 45-71 % of variance per layer. Short sweep 4372012 started 2026-10-05 02:47 MSK, ~2300 dialogues/h.
+
+## E10. Calibration round 2 (Gromov, 2026-10-05; HSE, first priority)
+Gromov's three questions: (1) larger embedding dimension and fractal / multifractal objects; (2) effect of the number of
+points and of trajectories; (3) a model of the real situation -- m unknown, Whitney / Takens only indirectly (FNN, "FNF"
+-- meaning to be clarified with Gromov) -- how to recover m from estimates across d and methods.
+Code: `experiments/dimension/code/calib2.py`, `10_calib2_array.sbatch` (job 4377311, tasks 0-28, excludes the slow node cn-040).
+Part A (tasks 0-20), V = 5000, 500 trajectories x 1500 steps, random partition, truth / SVD / CBOW d = 5, 10, 15, 30, 50, 100,
+words and bigrams, 4 estimators. Objects: T2..T12, S4, S8, S12, Lorenz (2.06), Roessler and Lorenz-96 (N = 6, 10)
+with the Kaplan-Yorke dimension computed from the Lyapunov spectrum (Lorenz 2.06, Roessler 2.01 checked), self-similar
+fractals with random walks on the level-L cell graph (Sierpinski gasket 1.585, tetrahedron 2, 4-simplex 2.32,
+7-simplex 3, carpet 1.893, Menger sponge 2.727), multifractal measures (gasket p = .6/.25/.15: D0 1.585, D1 1.353,
+D2 1.168; tetrahedron p = .4/.3/.2/.1: D0 2, D1 1.846, D2 1.737) via a Metropolis walk.
+Blind-protocol observables per object: FNN (Kennel, Rtol 2/5/10/15 and Atol 2), Cao E1 / E2 and TwoNN of k-gram clouds
+for word sequences (truth, CBOW 15, CBOW 30; k = 1..8) and for the classical scalar delay embedding of the first
+coordinate (k = 1..20). The inverse model (observables -> m, leave-one-object-out) is fitted offline.
+Part B (tasks 21-28): T4, T6, S4, Lorenz; V = 1000, 2000, 10000, 20000 (500 trajectories) and 100, 250, 1000, 2000
+trajectories (V = 5000); CBOW d = 15, 30.
+Smoke test on HSE (mftetra, tiny) passed end to end.
+FNF (Gromov's reply, 2026-10-05): "false neighbours" per Malinetskii & Potapov 2000, sec. 11.4.2 and 13.3 -- two kinds:
+FNN (window w = (m-1)tau too small, vanish as m grows) and FNF, false neighbours on folds (w too large; appear at
+scales above eps_fr; the correlation-integral slope then grows ~linearly with m). Added to calib2.py: correlation-integral
+slopes at C = 1e-3 / 1e-2 / 1e-1 per k, and -- using the known original states -- the share of reconstruction nearest
+neighbours that are far apart in the original space (> 3x / > 10x the true NN distance). Lorenz check (scalar x, tau = 28):
+FNN 0.97 / 0.24 / 0.01 for k = 1 / 2 / 3; false-in-original minimal at k = 3-4 (14 %) and rising to 37 % at k = 10 (FNF);
+small-scale slope 2.0 for all k >= 3, large-scale slope 1.6 -> 4.6 (FNF signature). Tasks 0-1 (torus2, torus4) had already
+started with the previous version: their *_fnn.json must be recomputed after they finish.
