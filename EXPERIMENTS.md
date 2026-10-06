@@ -107,7 +107,7 @@ Key: mean contextual BERT vectors overestimate and do not separate m = 3/4/6 (ep
 full 256: 21 / 29 / 36 / 38); no plateau in d; PCA 15 keeps only 28-48 % of variance. Implies the War-and-Peace ruBERT
 numbers are likely overestimates. Report restructured (intro with methods, then one section per estimator + embedding).
 
-## E9. Layer sweep of the nested-PCA intervention (HSE, queued last)
+## E9. Layer sweep of the nested-PCA intervention (HSE; short done, long running)
 pca_32 after each decoder block L = 1..30 (MVP used only L = 15). Per-layer bases from one identity calibration
 (24 calibration cards x 2 seeds, MVP cap 128 per dialogue x agent, same positions for all layers).
 Short: neutral, 24 cards x seeds 1..50 per layer (36 000). Long: neutral, 8 cards x seed 1103 per layer (240).
@@ -115,6 +115,14 @@ Identity controls reused from E5 / E4.
 Code: `hse_layer_sweep.py`, `hse_layer_calib.sbatch`, `hse_layer_short.sbatch`, `hse_layer_long.sbatch`.
 Jobs: 4372011 (calibration, after E5), 4372012 (short, after calibration); 4372289 (long, 17 workers -- submit limit
 100 jobs; lock-file claims, so fewer workers only make it slower). Initially nice 20000; on 2026-10-04 nice -> 0, and on 2026-10-05 `--mem=16G` removed: Slurm nodes report 1 MB of memory, so any --mem request can never be satisfied (job 4372011 had been pending for 1.5 days). Bases: 32 PCs explain 45-71 % of variance per layer. Short sweep 4372012 started 2026-10-05 02:47 MSK, ~2300 dialogues/h.
+
+Short sweep done 2026-10-05 (36 000/36 000, no errors). Text statistics per layer (`short_layer_stats.py`,
+`results/short_layer_stats.csv`, neutral frame, 1200 dialogues per layer): intervention at L01-L11 breaks generation
+-- 7-62 % empty utterances (peak L08), verbatim repeated utterances 5-14 %, trigram repetition 0.33-0.69, type-token
+ratio 0.10-0.20; from L12 on the dialogues are normal (no empty or repeated utterances, trigram repetition mostly
+0.01-0.29, TTR 0.22-0.47, 200-460 words). Long sweep 4372289: 16/240 records by 2026-10-06 07:00 MSK, 25/240 by 13:05, no errors.
+2026-10-06 02:09 workers _2,_3,_13,_15,_16 requeue-held to give calib3 (E12) the CPUs (Anastasia asked to raise E12's
+priority); their units moved to `locks_released`; released 07:05 (they start as calib3 tasks finish).
 
 ## E10. Calibration round 2 (Gromov, 2026-10-05; HSE, first priority)
 Gromov's three questions: (1) larger embedding dimension and fractal / multifractal objects; (2) effect of the number of
@@ -164,4 +172,55 @@ shuffled order at this resolution apart from a slightly slower k-gram growth. No
 Calibration (Brownian group, CBOW d = 15 TwoNN, comparable N ~ 10k bigrams: 6.6 -> m ~ 4-5; full N = 152k: 9.3 -> ~6.5)
 -- rough, the TwoNN value depends on N.
 Short dialogues, neutral frame (quick run, d = 30): E2 = 0.92 (dedup 0.94, shuffled 1.00) -- also Brownian group, at its edge.
-Full dialogue run: job 4378690 (`dialogue_delay.py`).
+Full dialogue run (job 4378690, `dialogue_delay.py`): E2(k = 2) real / dedup / shuffled --
+neutral 0.90-0.92 / 0.92-0.94 / 0.99-1.00, competition 0.91-0.92 / 0.92-0.95 / 1.00-1.01, cooperation 0.88 / 0.91-0.94 / 1.00
+(d = 15-30). Dialogues sit at the Brownian/flow boundary; verbatim repeats pull E2 down (removing them gives 0.91-0.95).
+
+## E12. Robustness of the CBOW over-estimation factor inside the Brownian group (2026-10-06, done)
+Question (Anastasia): is the factor 1.5-2.5 universal? One factor at a time on T2, T4, T6, S4, S8: step x0.5/2/3,
+Zipf-like non-uniform cells (kappa 1.5/3/5, achieved rank-frequency slope recorded; War and Peace-like skew at kappa ~5),
+V = 18000, sentence length 10/40, CBOW window 2/10; truth + CBOW d = 15/30, words and bigrams, 4 estimators plus TwoNN on
+all bigrams (War and Peace comparability). Code `calib3.py`, `12_calib3_array.sbatch`, job 4378998 (30 tasks). Smoke test OK.
+
+Done 2026-10-06 (30/30 tasks, 60 configurations, 360 clouds). `calib3_agg.py` -> `results/calib3_table.csv`;
+report `experiments/dimension/reports/ustoichivost_mnozhitelya_E12.pdf` (`calib3_report.py`). Factor = estimate / m (bigrams / 2m).
+- Words, CBOW d = 15, TwoNN: 1.24-3.78 over all variants (d = 30: up to 4.15). Baseline 1.5 (S8) .. 2.4 (T2), falls with m.
+  Hidalgo ~ TwoNN; Schweinhart 1.1-2.2.
+- No effect (<= 0.2): sentence length 10/20/40, CBOW window 2/5/10, step x0.5.
+- Effects: V = 18000 lowers it (1.2-1.9); step x2/x3 raises it (d = 15 up to 2.3, d = 30 up to 3.9); Zipf-like frequencies
+  raise it only for small m (T2 2.4 -> 2.9 -> 3.8 at kappa 3 / 5).
+- Bigrams: truth bigram clouds give only 0.5-0.8 of 2m (consecutive points close); CBOW adds 10-30 %; Zipf skew lowers
+  further (kappa 5: 0.5-0.6 of 2m).
+- Achieved rank-frequency slope: base -0.15, kappa 1.5/3/5: -0.50/-0.94/-1.19 (top-1 % share 0.06/0.14/0.25).
+- War and Peace reference, same code (`~/wap_run/wap_c3ref.py`): V 17900, slope -1.20, top-1 % share 0.44; CBOW d = 15 TwoNN
+  words (5000 sample) 12.95, bigrams (10 000) 6.6, all 152 568 bigrams 9.3.
+- Inverting log(est) ~ log m per variant: words -> m 6.9-13.2 (base 8.5, V18000 10.1, kappa 5 13.2 but slope 0.31 -> unstable);
+  bigrams (10k) -> 2.8-6.2; all bigrams -> 5.5-8.6. Words and bigrams disagree ~2x => the Brownian cell model describes text
+  only partly; one factor cannot give m of language. Working interval m ~ 5-10.
+- Next: calibration matched to War and Peace simultaneously (V ~ 18k, slope -1.2, top-1 % 44 %, ~150k bigrams, m = 4-12);
+  if words/bigrams still disagree, a model with memory is needed.
+
+## E13. Bigram estimate / m as a function of rho = delta / r (2026-10-06, running)
+Question (Anastasia): is the bigram over-estimation always 1.3-2 x m? Hypothesis: for Brownian walks bigram estimate / m =
+f(rho), rho = |x_{t+1} - x_t| / nearest-neighbour distance in the bigram cloud, rising from 1 (pairs hug the diagonal) to 2,
+the same curve for every m; for deterministic flows ~1 (L96 N = 10 bigrams 6.6-6.8 at D_KY 6.55, E10).
+Part 1 (exact coordinates, no CBOW): T2..T12, S4, S8, S12; step x0.1..x5 (10 values); raw consecutive pairs and V = 5000
+cell bigrams; N = 1k..100k; TwoNN, rho, words TwoNN, correlation slopes at 3 scales, Hidalgo at N = 3000.
+Part 4: War and Peace CBOW d = 5/10/15, the same quantities for words and all 152 568 bigrams at N = 1k..all.
+Parts 2-3 (CBOW on the same grid; flows and fractal walks) only if part 1 collapses onto one curve.
+Code `calib4.py`, `13_calib4_array.sbatch` (md5 bcc083b7..., 3d1d1446...), job 4380885 (10 tasks, 4 CPU each).
+First numbers (T2, raw pairs, step x0.5): N 1k -> 100k gives rho 0.20 -> 1.04 and TwoNN / m 1.03 -> 1.89 -- as predicted.
+Cell bigrams behave differently (T2 step x0.35: rho 2.0 at N = 30k but TwoNN / m = 1.0) -- to be understood.
+
+## Synthesis: accuracy of CBOW + estimator (2026-10-06)
+All calibrations pooled (E6, E7, E10, E12; 27 objects, ~1500 clouds; `results/calib_pooled.csv`, `code/calib_synthesis.py`).
+Report `experiments/dimension/reports/tochnost_cbow_metodov.pdf`.
+- Estimators alone on exact points: words TwoNN / Hidalgo / Schweinhart = 1.00 / 1.00 / 1.02 m (10-90 %: within +-5..12 %);
+  FisherS 1.56 m (unusable). Bigrams on exact points: 1.41 / 1.47 / 1.58 m (not 2m).
+- CBOW d >= 15 (Brownian objects, 15): words TwoNN 1.97 m (10-90 %: 1.50-2.46), Hidalgo 2.00, Schweinhart 1.62 (1.33-1.91);
+  bigrams 1.63 / 1.74 / 1.96 m. Ratio falls with m (Spearman -0.5..-0.73). d = 5 underestimates (0.7 m).
+- Corrected (log-log inverse model), leave-one-object-out: median error 6-17 %, 90 % within 21-36 %.
+- Leave-one-condition-family-out: partition / T / sentence / window within +-7 %; V18000 words TwoNN/Hid -25..-32 %;
+  Zipf bigrams TwoNN/Hid -15..-36 %; held-out generator (pseudolanguage E7) -34..-56 % for every method.
+- War and Peace through the pooled model: words 7-9, bigrams 3.4-4.4 -> disagreement beyond the +-25 % in-family error,
+  i.e. text outside the calibration family; m ~ 3.5-9 compatible with all methods. Schweinhart is the most stable estimator.
