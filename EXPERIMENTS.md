@@ -224,3 +224,16 @@ Report `experiments/dimension/reports/tochnost_cbow_metodov.pdf`.
   Zipf bigrams TwoNN/Hid -15..-36 %; held-out generator (pseudolanguage E7) -34..-56 % for every method.
 - War and Peace through the pooled model: words 7-9, bigrams 3.4-4.4 -> disagreement beyond the +-25 % in-family error,
   i.e. text outside the calibration family; m ~ 3.5-9 compatible with all methods. Schweinhart is the most stable estimator.
+
+## E14. Removing CBOW noise instead of calibrating it (2026-10-06, running, first priority)
+Motivation (synthesis above): estimators are exact on true points, so the CBOW bias is an embedding effect; the calibrated
+correction failed on a held-out generator. Measure the noise on the text itself: R = 5 CBOW runs (run 0 = full data, seed 1;
+runs 1-4 = bootstrap of documents), Procrustes-aligned; per-word scatter sigma_w. Estimates (4 estimators) on: single run,
+run-averaged vectors, frequent words only (count >= 1/5/20/50), plus scale curves (TwoNN vs sub-sample size with NN distance,
+correlation slopes at r = c * sigma). Words and bigrams, d = 15 / 30.
+Cases (21): T2-T8, S4, S8 base; Zipf kappa 3 (T4, T6, S4), kappa 5 (T4); V = 18000 (T4, S8); step x2 (T4, T6);
+pseudolanguage eps m = 2/3/4/6 and dist m = 2/4 (held-out generator); War and Peace.
+Pass criterion: a variant counts only if it gives ~ m on all calibration families AND on the pseudolanguage.
+Code `calib5.py`, `14_calib5_array.sbatch` (md5 13bd4197..., 0d00ddfd...), job 4381013 (21 tasks x 2 CPU).
+Long sweep: workers _0 and _4 additionally requeue-held (13-22 min of progress lost); 9 workers held in total, to be released
+when E14 finishes. E13 (job 4380885) finished: 93 result files, analysis pending.
