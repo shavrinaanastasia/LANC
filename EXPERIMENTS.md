@@ -200,7 +200,7 @@ report `experiments/dimension/reports/ustoichivost_mnozhitelya_E12.pdf` (`calib3
 - Next: calibration matched to War and Peace simultaneously (V ~ 18k, slope -1.2, top-1 % 44 %, ~150k bigrams, m = 4-12);
   if words/bigrams still disagree, a model with memory is needed.
 
-## E13. Bigram estimate / m as a function of rho = delta / r (2026-10-06, running)
+## E13. Bigram estimate / m as a function of rho = delta / r (2026-10-06, done)
 Question (Anastasia): is the bigram over-estimation always 1.3-2 x m? Hypothesis: for Brownian walks bigram estimate / m =
 f(rho), rho = |x_{t+1} - x_t| / nearest-neighbour distance in the bigram cloud, rising from 1 (pairs hug the diagonal) to 2,
 the same curve for every m; for deterministic flows ~1 (L96 N = 10 bigrams 6.6-6.8 at D_KY 6.55, E10).
@@ -225,6 +225,21 @@ Report `experiments/dimension/reports/tochnost_cbow_metodov.pdf`.
 - War and Peace through the pooled model: words 7-9, bigrams 3.4-4.4 -> disagreement beyond the +-25 % in-family error,
   i.e. text outside the calibration family; m ~ 3.5-9 compatible with all methods. Schweinhart is the most stable estimator.
 
+Results (93 files, `results/calib4_table.csv`; exact coordinates, no CBOW):
+- Raw consecutive pairs: hypothesis confirmed after normalising by the words estimate at the same N (removes TwoNN's
+  finite-N bias at large m): bigram / words = f(rho), one curve for m = 2..12: rho < 0.2 -> 1.0; 0.3-0.5 -> 1.2;
+  0.6-0.8 -> 1.55; ~1 -> 1.8-2.0; > 1.3 -> 2.0. Per-bin medians across m agree within ~0.1-0.2; 10-90 % band about +-10-15 %.
+- Cell bigrams (discrete words, the text-like case): rho does NOT control the ratio. With growing N rho grows but
+  bigram / words FALLS (T4, step <= 1: 1.5 at N = 1k -> 1.0 at 100k): at fine scales the nearest neighbour of (a, b) is
+  (a, b') -- the set is a fan of a few successors per word, locally ~ m-dimensional. Larger steps (more successors) keep it
+  higher (step x5: 1.95 -> 1.66). So for words-as-cells the bigram factor depends on N and step, not on one universal rho.
+- War and Peace, CBOW d = 15: bigram TwoNN 6.2 -> 9.3 as N 1k -> 152k (rho 1.5 -> 3.2), words 11.7 -> 13.3; d = 10: 6.0 -> 7.5;
+  d = 5: 5.8 -> 5.0. Calibration CBOW bigrams (E12): all / 10k ratio median 1.02 (0.75-1.34), Zipf kappa 3/5: 1.09/1.12;
+  War and Peace 1.41 -- just above the calibration maximum.
+Conclusion: the bigram factor is not a universal 1.3-2; for continuous pairs it is a known function of rho, for discrete
+words it also depends on N and on the number of successors per word. Stages 2-3 (CBOW grid, flows) not run as planned --
+superseded by E14 (noise removal), which Anastasia put first.
+
 ## E14. Removing CBOW noise instead of calibrating it (2026-10-06, running, first priority)
 Motivation (synthesis above): estimators are exact on true points, so the CBOW bias is an embedding effect; the calibrated
 correction failed on a held-out generator. Measure the noise on the text itself: R = 5 CBOW runs (run 0 = full data, seed 1;
@@ -237,3 +252,59 @@ Pass criterion: a variant counts only if it gives ~ m on all calibration familie
 Code `calib5.py`, `14_calib5_array.sbatch` (md5 13bd4197..., 0d00ddfd...), job 4381013 (21 tasks x 2 CPU).
 Long sweep: workers _0 and _4 additionally requeue-held (13-22 min of progress lost); 9 workers held in total, to be released
 when E14 finishes. E13 (job 4380885) finished: 93 result files, analysis pending.
+Results, 19/21 cases (2026-10-06 19:15 MSK; `results/calib5_table.csv`). CBOW d = 15, TwoNN, words / bigrams:
+- Averaging 5 runs and dropping rare words change almost nothing on calibration (< 5 %): T4 8.1 -> 7.7, T6 10.7 -> 10.5,
+  T8 12.5 -> 12.3, S4 7.9 -> 7.6. Only with Zipf frequencies does the frequency filter help (T4 kappa 5: 9.0 -> 6.8).
+  => the CBOW over-estimate is systematic, not run-to-run noise. Noise removal in this form does not fix it.
+- Bootstrap scatter sigma GROWS with word frequency (rare 0.3-0.9, frequent 6-9; follows vector norm) and is comparable to
+  the nearest-neighbour distance (noise/nn 0.3-4.5), so "scales above the noise" leave almost no range -- inconclusive.
+- Pseudolanguage (eps walk) is recovered almost exactly by CBOW: words 2.8 / 3.9 / 4.8 / 6.4, bigrams 2.9 / 4.1 / 4.9 / 6.0
+  for m = 2 / 3 / 4 / 6, while tori / spheres give 1.6-2.5 m. The bias depends on the text generator, not on noise.
+- War and Peace: count >= 50 lowers words 13.1 -> 9.6 and raises bigrams 6.6 -> 7.7 (words and bigrams converge).
+Long sweep: all 9 held workers released 19:15 MSK (no calib5 tasks pending).
+
+## E15. Why CBOW recovers m on the pseudolanguage but not on tori: cross-swaps (2026-10-06, done)
+E14 showed the CBOW bias is systematic and generator-dependent (pseudolanguage eps walk ~ m, tori 1.6-2.5 m). Swap the three
+differences one at a time on m = 2, 4, 6 (V = 5000 uniform word points): manifold torus vs cube minus 4 balls; walk brown
+(continuous, quantised to nearest word, repeats merged) vs eps (next word uniform among words within eps, as E7); text sent20
+(500 walks, sentences of 20) vs long (1000 texts, real length distribution, one sentence each). 24 configurations; exact
+coordinates and CBOW d = 15 / 30, words and bigrams, 4 estimators; records tokens, step / NN distance, frequency skew.
+Code `calib6.py`, `15_calib6_array.sbatch` (md5 172fdbd4..., 3a5e1164...), job 4381744 (24 x 2 CPU). Starts as CPU quota frees
+(long sweep 17 workers + calib2 3 + calib5 2 running).
+Run with first priority (11 long-sweep workers held 19:35-23:30 MSK, then released). All 24 done, no errors.
+CBOW d = 15, TwoNN on words (truth on exact points ~ m in every case):
+  m = 2: brown 4.4-5.1, eps 2.8-3.2;  m = 4: brown 7.0-8.4, eps 4.8-5.7;  m = 6: brown 8.9-10.7, eps 6.4-7.1.
+  Manifold (torus vs cube) and text format (sentences of 20 vs long texts with real lengths) change it by <= 15 %.
+  => the WALK is the factor: walk on the word points themselves (next word depends only on the current word: a Markov
+  chain on words) gives 1.1-1.6 m; continuous walk quantised to words (the walker has a hidden position inside the
+  word's cell, so the next word depends on more than the current word) gives 1.5-2.5 m.
+  Not just step size: at m = 6 step / NN is similar (brown 2.1-2.2, eps 1.7-1.9) but 10.5 vs 7.1.
+  Schweinhart words: brown 1.4-1.7 m, eps 1.0-1.35 m. Bigrams (truth): brown ~1.4-1.5 m, eps ~1.2-1.35 m;
+  CBOW bigrams: brown 1.6-2.1 m, eps 1.2-1.45 m.
+Implication for text: the needed correction depends on whether the word sequence carries hidden state beyond the current
+word. Next: measure this directly (e.g. I(w_t+1; w_t-1 | w_t) vs a word-Markov surrogate) on calibration texts and on
+War and Peace.
+
+## E16. Hidden state beyond the current word: put War and Peace on the E15 scale (2026-10-07, done)
+Two text-only measurements, identical for calibration texts (E15 generators, sentences of 20: m = 2/4/6 x torus/cube x
+brown/eps) and War and Peace: (1) predictive gain G = H(bigram) - H(trigram) on held-out documents (interpolated absolute
+discounting); (2) Markov surrogate sampled from the text's own bigram transitions (no hidden state by construction):
+excess G = G_real - G_surrogate, and CBOW d = 15 dimension (4 estimators, words and bigrams) on real vs surrogate text.
+Expected: eps texts excess ~ 0, CBOW real / surrogate ~ 1; brown texts excess > 0 and real / surrogate ~ brown / eps of E15.
+Code `calib7.py`, `16_calib7_array.sbatch` (md5 c23db510..., 85542f98...), job 4382638 (13 tasks x 2 CPU).
+Local smoke test (110k tokens): excess G brown 0.038 vs eps 0.011 bits/word.
+Run with first priority from 04:20 MSK (6 long-sweep workers requeue-held: _0,_4,_9,_11,_12,_14; released 14:15 MSK --
+the laptop was offline 04:55-14:10, so they stayed held longer than needed). All 13 done.
+CBOW d = 15, TwoNN (Schweinhart), real text -> its Markov surrogate:
+  calibration, all 12: words and bigrams change by <= 0.3 (e.g. m4 torus brown words 7.9 -> 8.0, m6 torus brown 10.4 -> 10.4,
+  m4 cube eps 5.0 -> 5.3); War and Peace: words 13.1 -> 13.0, bigrams 6.7 -> 7.2 (Schweinhart bigrams 7.0 -> 6.8).
+  => the CBOW geometry (and its dimension) is determined by the first-order transition matrix P(next word | word);
+  memory beyond the current word plays no role. This corrects the E15 interpretation ("hidden state").
+Excess predictive gain (hidden state is real and measurable, just irrelevant for CBOW): eps -0.02..0.00 (m 2/4/6 cube and
+m 2/4 torus), but m6 torus eps 0.059; brown 0.023-0.100; War and Peace 0.101 bits/word.
+H2 = H(next | current) on held-out text: brown > eps at equal m (m2 3.7 vs 3.3; m4 7.3-8.2 vs 5.3-6.4; m6 9.6-11.4 vs
+6.6-10.6), but H2 alone does not order the CBOW factor (m6 torus eps H2 10.6 yet words 7.1).
+Next (proposal): CBOW with negative sampling implicitly factorises the shifted PMI matrix of word-context counts
+(Levy & Goldberg 2014), so the dimension can be computed from the PMI matrix of the text directly (window 5, SVD), and the
+calibration can use Markov chains with known geometry; then compare the shape of P (successor spread, jump distances in
+true coordinates) between brown and eps.
